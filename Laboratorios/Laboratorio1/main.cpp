@@ -1,7 +1,14 @@
-#include<iostream>
+#include <iostream>
 #include "funciones.hpp"
 
 int main() {
-    
-    return 0;
+
+    Empleado empleados[MAX_EMPLEADOS];
+    int numEmpleados = 0;
+    while (1){
+        mostrarMenu();
+        procesarOpcion(empleados, numEmpleados);
+    }
+
+    return 0;  
 }
