@@ -7,7 +7,7 @@ int main() {
     int var2 = 2;
     int var3 = 3;
 
-    switch (var1) {
+    switch (var) {
         case 1:
             std::cout << "Case 1!\n";
             break;
