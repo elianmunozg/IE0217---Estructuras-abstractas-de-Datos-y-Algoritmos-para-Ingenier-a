@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include <iostream>
+#include <string>
 
 /**
  * @file Game.cpp
@@ -7,10 +8,45 @@
  */
 
 Game::Game() {
-    // Inicialización del juego
+    // Inicialización de variables y estado del juego
 }
 
 void Game::run() {
-    std::cout << "Bienvenido al juego de adivinanzas!" << std::endl;
-    // Aquí se implementará la lógica del menú y del juego
+    int choice = 0;
+    do {
+        std::cout << "Menú del Juego de Adivinanzas\n";
+        std::cout << "1. Iniciar Juego\n";
+        std::cout << "2. Elegir Intervalo\n";
+        std::cout << "3. Salir\n";
+        std::cout << "Selecciona una opción: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                startGame();
+                break;
+            case 2:
+                chooseInterval();
+                break;
+            case 3:
+                std::cout << "Gracias por jugar. ¡Hasta luego!\n";
+                break;
+            default:
+                std::cout << "Opción no válida. Inténtalo de nuevo.\n";
+        }
+    } while (choice != 3);
+}
+
+/**
+ * @brief Inicia el juego.
+ */
+void Game::startGame() {
+    // Lógica para iniciar el juego
+}
+
+/**
+ * @brief Permite al usuario elegir el intervalo de números para adivinar.
+ */
+void Game::chooseInterval() {
+    // Lógica para elegir el intervalo
 }
