@@ -1,0 +1,16 @@
+#include "Game.hpp"
+#include <iostream>
+
+/**
+ * @file Game.cpp
+ * @brief Implementación de la clase Game para el juego de adivinanzas.
+ */
+
+Game::Game() {
+    // Inicialización del juego
+}
+
+void Game::run() {
+    std::cout << "Bienvenido al juego de adivinanzas!" << std::endl;
+    // Aquí se implementará la lógica del menú y del juego
+}
