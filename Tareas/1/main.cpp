@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "game.hpp"
 
 /**
  * @brief Punto de entrada principal para el juego de adivinanzas.
