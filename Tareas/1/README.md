@@ -1,4 +1,32 @@
 # Tarea 1
+Este programa es un juego de adivinanzas implementado en C++. El jugador debe adivinar un número secreto dentro de un rango definido, con un número limitado de intentos. El juego ofrece dos modos: un modo estándar que indica si el número es mayor o menor y un modo desafiante con pistas como "congelado", "frío", "caliente" o "hirviendo".
+
+## Cómo Compilar y Ejecutar
+
+### Requisitos Previos
+
+- Compilador de C++ (g++ para Linux/macOS, MinGW g++ para Windows o similar).
+
+## Compilar el Juego
+
+1. Abre una terminal en el directorio del proyecto.
+2. Ejecuta `make build` para compilar.
+
+## Ejecutar el Juego
+
+- Después de compilar, ejecuta `make run`.
+
+## Comandos Adicionales
+
+- `make all`: Compila y ejecuta el juego.
+- `make clean`: Limpia archivos compilados.
+
+## Solución de Problemas
+
+- Asegúrate de que el compilador esté en el PATH del sistema.
+- En Windows, ajusta el Makefile si no estás utilizando Cygwin o WSL.
+
+
 ## Parte Teórica
 ### 1. Principal diferencia entre C y C++:
 

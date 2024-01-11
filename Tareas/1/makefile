@@ -19,21 +19,23 @@ endif
 # Opciones de compilación
 CFLAGS=-c -Wall
 
+# Directorio de los archivos fuente
+SRCDIR=src
+
 # Targets
 all: build run
 
-build: main.o game.o
-	$(CC) main.o game.o -o $(EXECUTABLE)
+build: $(SRCDIR)/main.o $(SRCDIR)/game.o
+	$(CC) $(SRCDIR)/main.o $(SRCDIR)/game.o -o $(EXECUTABLE)
 
-main.o: main.cpp
-	$(CC) $(CFLAGS) main.cpp
+$(SRCDIR)/main.o: $(SRCDIR)/main.cpp
+	$(CC) $(CFLAGS) $(SRCDIR)/main.cpp -o $(SRCDIR)/main.o
 
-game.o: game.cpp
-	$(CC) $(CFLAGS) game.cpp
+$(SRCDIR)/game.o: $(SRCDIR)/game.cpp
+	$(CC) $(CFLAGS) $(SRCDIR)/game.cpp -o $(SRCDIR)/game.o
 
 clean:
-	$(RM) *o $(EXECUTABLE)
+	$(RM) $(SRCDIR)/*.o $(EXECUTABLE)
 
 run:
 	./$(EXECUTABLE)
-
