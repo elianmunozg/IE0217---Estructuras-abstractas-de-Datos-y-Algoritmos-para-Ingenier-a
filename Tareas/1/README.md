@@ -145,3 +145,59 @@ Las fuentes comunes de memory leaks incluyen:
 Detectar y corregir memory leaks es crucial para escribir programas eficientes y estables. Se utilizan herramientas como analizadores de memoria y técnicas de depuración para identificar y solucionar estos problemas. En C++, se puede utilizar `valgrind` u otras herramientas similares para detectar memory leaks durante la ejecución del programa.
 
 Referencia: [Fuga de memoria - Wikipedia](https://es.wikipedia.org/wiki/Fuga_de_memoria)
+## Parte Teórica Makefile
+### 1. Variables Comunes en un Makefile
+
+- **CC**: Variable que especifica el compilador de C a utilizar.
+- **CFLAGS**: Flags para el compilador de C que pueden incluir opciones de optimización, advertencias, etc.
+- **CXXFLAGS**: Similar a `CFLAGS`, pero para el compilador de C++.
+- **LDFLAGS**: Flags para el enlazador (`ld`), como rutas para bibliotecas.
+
+### 2. Composición de una Regla en un Makefile
+
+Una regla en un Makefile se compone de:
+- **Target**: El objetivo a construir.
+- **Prerequisites**: Archivos necesarios para construir el target.
+- **Recipe**: Comandos ejecutados para construir el target.
+
+### 3. Definición de Target y su Relación con Prerequisites
+
+**Target:**
+- Un archivo que se genera o una acción a ejecutar.
+
+**Prerequisites:**
+- Archivos o targets que deben estar actualizados antes de construir el target.
+
+**Relación:**
+- El target se reconstruye si cualquier prerequisite ha cambiado.
+
+### 4. Banderas del Compilador gcc
+
+- **-I**: Incluye directorios adicionales en la búsqueda de archivos de cabecera.
+- **-c**: Compila o ensambla el código fuente, pero no enlaza.
+- **-o**: Especifica el nombre del archivo de salida generado.
+
+### 5. Definición y Utilización de Variables en un Makefile
+
+**Definición:**
+- Se asigna un valor a una variable con `=` o `:=`.
+
+**Utilización:**
+- Se accede al valor con `$(nombre_variable)`.
+
+**Utilidad:**
+- Permiten reutilizar valores y facilitar la modificación del Makefile.
+
+### 6. Utilidad del Símbolo @ en un Makefile
+
+- El símbolo `@` al inicio de una receta evita que el comando se imprima en la consola antes de su ejecución.
+
+### 7. Utilidad de .PHONY en un Makefile
+
+**.PHONY:**
+- Se utiliza para marcar targets que no representan archivos.
+
+**Utilidad:**
+- Asegura que el comando se ejecute incluso si hay un archivo con el mismo nombre del target.
+
+Referencia: [Conceptos básicos de make y los Makefile](https://old.chuidiang.org/clinux/herramientas/makefile.php)
