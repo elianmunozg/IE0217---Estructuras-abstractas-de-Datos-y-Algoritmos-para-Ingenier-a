@@ -1,4 +1,5 @@
 #include "Pelicula.hpp"
+#include <iostream>
 
 /**
  * @brief Constructor de la clase Pelicula.
