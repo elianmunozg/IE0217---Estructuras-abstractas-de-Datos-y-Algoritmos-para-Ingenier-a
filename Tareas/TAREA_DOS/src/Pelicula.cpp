@@ -24,18 +24,24 @@ Pelicula::Pelicula(const std::string& titulo, const std::string& autor,
  * @brief Método para determinar la duración de la película.
  * @return Retorna un string que indica si la película es corta, mediana o larga.
  */
-std::string Pelicula::determinarDuracion() const {
-    if (duracion <= 90) return "corta";
-    else if (duracion <= 150) return "mediana";
-    return "larga";
-}
+  std::string determinarDuracion() const {
+        if (getDuracion() >= 0 && getDuracion() <= 90) {
+            return "Corta";
+        } else if (getDuracion() > 90 && getDuracion() <= 150) {
+            return "Mediana";
+        } else {
+            return "Larga";
+        }
+    }
 
 /**
  * @brief Método para imprimir la información de la película.
  */
 void Pelicula::imprimirInformacion() const {
-    std::cout << "Titulo: " << titulo << "\nAutor: " << autor
-              << "\nGenero: " << genero << "\nDuracion: " << duracion << " minutos"
-              << "\nEstado: " << estado << "\nPrecio: " << precio
-              << "\nResumen: " << resumenContenido << "\nMaterial Relacionado: " << materialRelacionado << std::endl;
+    std::cout << "Titulo: " << getTitulo() << "\nAutor: " << getAutor()
+              << "\nGenero: " << getGenero() << "\nDuracion: " << getDuracion() << " minutos"
+              << "\nEstado: " << getEstado() << "\nPrecio: " << getPrecio()
+              << "\nResumen: " << getResumenContenido() << "\nMaterial Relacionado:";
+
+   
 }

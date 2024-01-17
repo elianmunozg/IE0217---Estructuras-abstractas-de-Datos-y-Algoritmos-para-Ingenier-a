@@ -34,17 +34,11 @@ std::string Libro::determinarLongitud() const {
  * @brief Imprime la información completa del libro.
  */
 void Libro::imprimirInformacion() const {
-    std::cout << "Titulo: " << titulo << "\nAutor: " << autor
-              << "\nEditorial: " << editorial << "\nGenero: " << genero
-              << "\nEstado: " << estado << "\nCantidad de Hojas: " << cantidadHojas
-              << "\nPrecio: " << precio << "\nResumen: " << resumenContenido << std::endl;
+    std::cout << "Titulo: " << getTitulo() << "\nAutor: " << getAutor()
+              << "\nEditorial: " << getEditorial() << "\nGenero: " << getGenero()
+              << "\nEstado: " << getEstado() << "\nCantidad de Hojas: " << getCantidadHojas()
+              << "\nPrecio: " << getPrecio() << "\nResumen: " << getResumenContenido() << std::endl;
 
-    // Imprimir los materiales relacionados si los hay
-    if (!materialRelacionado.empty()) {
-        std::cout << "Materiales Relacionados: " << std::endl;
-        for (const auto& material : materialRelacionado) {
-            std::cout << " - " << material << std::endl;
-        }
-    }
+    
 }
 

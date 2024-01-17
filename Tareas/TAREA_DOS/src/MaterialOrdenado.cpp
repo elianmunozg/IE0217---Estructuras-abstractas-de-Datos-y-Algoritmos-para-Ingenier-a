@@ -1,5 +1,5 @@
 #include "MaterialOrdenado.hpp"
-
+#include <iostream>
 /**
  * @brief Constructor de la clase MaterialOrdenado.
  */
@@ -14,15 +14,14 @@ MaterialOrdenado::~MaterialOrdenado() {}
  * @brief Añadir un material de lectura a la colección.
  * @param material Puntero compartido al material de lectura a añadir.
  */
-void MaterialOrdenado::anadirMaterial(const std::shared_ptr<MaterialLectura>& material) {
+void MaterialOrdenado::anadirMaterial(MaterialLectura* material) {
     materialesLectura.push_back(material);
 }
-
 /**
  * @brief Añadir un material audiovisual a la colección.
  * @param material Puntero compartido al material audiovisual a añadir.
  */
-void MaterialOrdenado::anadirMaterial(const std::shared_ptr<MaterialAudiovisual>& material) {
+void MaterialOrdenado::anadirMaterial(MaterialAudiovisual* material) {
     materialesAudiovisuales.push_back(material);
 }
 
@@ -34,17 +33,20 @@ void MaterialOrdenado::anadirMaterial(const std::shared_ptr<MaterialAudiovisual>
  * @param titulo El título del material a eliminar.
  */
 void MaterialOrdenado::eliminarMaterial(const std::string& titulo) {
-    // Eliminar de materiales de lectura
-    auto itLectura = std::remove_if(materialesLectura.begin(), materialesLectura.end(), 
-                                    [&](const std::shared_ptr<MaterialLectura>& material) { return material->getTitulo() == titulo; });
+    // Buscar y eliminar el material de lectura si existe
+    auto itLectura = std::remove_if(materialesLectura.begin(), materialesLectura.end(),
+        [&titulo](MaterialLectura* material) {
+            return material->getTitulo() == titulo;
+        });
     materialesLectura.erase(itLectura, materialesLectura.end());
 
-    // Eliminar de materiales audiovisuales
-    auto itAudiovisual = std::remove_if(materialesAudiovisuales.begin(), materialesAudiovisuales.end(), 
-                                        [&](const std::shared_ptr<MaterialAudiovisual>& material) { return material->getTitulo() == titulo; });
+    // Buscar y eliminar el material audiovisual si existe
+    auto itAudiovisual = std::remove_if(materialesAudiovisuales.begin(), materialesAudiovisuales.end(),
+        [&titulo](MaterialAudiovisual* material) {
+            return material->getTitulo() == titulo;
+        });
     materialesAudiovisuales.erase(itAudiovisual, materialesAudiovisuales.end());
 }
-
 
 /**
  * @brief Busca y muestra la información de materiales por título.
@@ -54,16 +56,28 @@ void MaterialOrdenado::eliminarMaterial(const std::string& titulo) {
  * @param titulo El título del material a buscar.
  */
 void MaterialOrdenado::buscarMaterialPorTitulo(const std::string& titulo) const {
+    bool encontrado = false;
+
     for (const auto& material : materialesLectura) {
         if (material->getTitulo() == titulo) {
             material->imprimirInformacion();
+            encontrado = true;
+            break; // Terminamos la búsqueda al encontrar el material
         }
     }
 
-    for (const auto& material : materialesAudiovisuales) {
-        if (material->getTitulo() == titulo) {
-            material->imprimirInformacion();
+    if (!encontrado) {
+        for (const auto& material : materialesAudiovisuales) {
+            if (material->getTitulo() == titulo) {
+                material->imprimirInformacion();
+                encontrado = true;
+                break; // Terminamos la búsqueda al encontrar el material
+            }
         }
+    }
+
+    if (!encontrado) {
+        std::cout << "Material con título '" << titulo << "' no encontrado." << std::endl;
     }
 }
 /**
@@ -74,17 +88,25 @@ void MaterialOrdenado::buscarMaterialPorTitulo(const std::string& titulo) const 
  * @param tipo El tipo de material a buscar (por ejemplo, "libro", "noticia", "pelicula", "podcast").
  */
 void MaterialOrdenado::buscarMaterialPorTipo(const std::string& tipo) const {
+    bool encontrado = false;
+
     if (tipo == "libro" || tipo == "noticia") {
         for (const auto& material : materialesLectura) {
             if (material->getTipoMaterial() == tipo) {
                 material->imprimirInformacion();
+                encontrado = true;
             }
         }
     } else if (tipo == "pelicula" || tipo == "podcast") {
         for (const auto& material : materialesAudiovisuales) {
             if (material->getTipoMaterial() == tipo) {
                 material->imprimirInformacion();
+                encontrado = true;
             }
         }
+    }
+
+    if (!encontrado) {
+        std::cout << "No se encontraron materiales del tipo '" << tipo << "'." << std::endl;
     }
 }

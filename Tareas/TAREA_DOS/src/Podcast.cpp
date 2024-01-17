@@ -30,16 +30,10 @@ std::string Podcast::determinarDuracion() const {
 }
 
 void Podcast::imprimirInformacion() const {
-    std::cout << "Titulo: " << titulo << "\nCreador: " << autor
-              << "\nGénero: " << genero << "\nDuración: " << duracion << " minutos"
-              << "\nEstado: " << estado << "\nPrecio: " << precio
-              << "\nResumen del Contenido: " << resumenContenido << std::endl;
+    std::cout << "Titulo: " << getTitulo() << "\nCreador: " << getAutor()
+              << "\nGénero: " << getGenero() << "\nDuración: " << getDuracion() << " minutos"
+              << "\nEstado: " << getEstado() << "\nPrecio: " << getPrecio()
+              << "\nResumen del Contenido: " << getResumenContenido() << std::endl;
 
-    // Imprimir los materiales relacionados si los hay
-    if (!materialRelacionado.empty()) {
-        std::cout << "Materiales Relacionados:" << std::endl;
-        for (const auto& material : materialRelacionado) {
-            std::cout << " - " << material << std::endl;
-        }
-    }
+    
 }

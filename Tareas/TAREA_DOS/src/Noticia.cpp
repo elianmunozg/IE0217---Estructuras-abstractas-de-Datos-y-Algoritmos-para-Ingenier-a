@@ -38,11 +38,5 @@ void Noticia::imprimirInformacion() const {
               << "\nEditorial: " << editorial << "\nGenero: " << genero
               << "\nEstado: " << estado << "\nCantidad de Hojas: " << cantidadHojas
               << "\nPrecio: " << precio << "\nResumen: " << resumenContenido << std::endl;
-    // Imprimir los materiales relacionados si los hay
-    if (!materialRelacionado.empty()) {
-        std::cout << "Materiales Relacionados: " << std::endl;
-        for (const auto& material : materialRelacionado) {
-            std::cout << " - " << material << std::endl;
-        }
-    }
+    
 }

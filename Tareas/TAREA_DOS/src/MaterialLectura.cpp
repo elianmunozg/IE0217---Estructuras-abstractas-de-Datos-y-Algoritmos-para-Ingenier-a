@@ -1,4 +1,5 @@
 #include "MaterialLectura.hpp"
+#include <iostream>
 
 /**
  * @brief Constructor de la clase MaterialLectura.
@@ -18,4 +19,39 @@ MaterialLectura::MaterialLectura(const std::string& titulo, const std::string& a
     this->grupo = "lectura";
 }
 
-// Otros métodos comunes a todos los materiales de lectura
+// Getters para los atributos protegidos
+const std::string& MaterialLectura::getTitulo() const {
+    return titulo;
+}
+
+const std::string& MaterialLectura::getGrupo() const {
+    return grupo;
+}
+
+const std::string& MaterialLectura::getTipoMaterial() const {
+    return tipoMaterial;
+}
+
+const std::string& MaterialLectura::getAutor() const {
+    return autor;
+}
+
+const std::string& MaterialLectura::getEditorial() const {
+    return editorial;
+}
+
+const std::string& MaterialLectura::getGenero() const {
+    return genero;
+}
+
+const std::string& MaterialLectura::getEstado() const {
+    return estado;
+}
+
+int MaterialLectura::getCantidadHojas() const {
+    return cantidadHojas;
+}
+
+double MaterialLectura::getPrecio() const {
+    return precio;
+}
