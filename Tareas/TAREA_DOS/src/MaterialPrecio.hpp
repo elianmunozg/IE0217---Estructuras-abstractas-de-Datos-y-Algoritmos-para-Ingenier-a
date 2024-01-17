@@ -1,29 +1,34 @@
 #ifndef MATERIALPRECIO_HPP
 #define MATERIALPRECIO_HPP
 
+#include <string>
 #include <vector>
 #include <memory>
-#include "MaterialLectura.hpp"
-#include "MaterialAudiovisual.hpp"
+#include "Libro.hpp"  // Incluye los encabezados de las clases base
+#include "Noticia.hpp"
+#include "Pelicula.hpp"
+#include "Podcast.hpp"
+
+#include <iostream>
 
 /**
  * @brief Clase para ordenar y mostrar materiales por precio.
  */
-class MaterialPrecio {
-private:
-    std::vector<std::shared_ptr<MaterialLectura>> materialesLectura;
-    std::vector<std::shared_ptr<MaterialAudiovisual>> materialesAudiovisuales;
-
+class MaterialPrecio : public Libro, public Noticia, public Pelicula, public Podcast {
 public:
-      MaterialPrecio();
-    ~MaterialPrecio();
-
-    void anadirMaterial(const std::shared_ptr<MaterialLectura>& material);
-    void anadirMaterial(const std::shared_ptr<MaterialAudiovisual>& material);
-    void eliminarMaterial(const std::string& titulo);
-    void ordenarPorPrecio(bool ascendente = true);
+    MaterialPrecio(const std::string& titulo, const std::string& grupo, double precio);
+    
+    void ordenarAscendente();
+    void ordenarDescendente();
     void imprimirMateriales() const;
-    // Otros métodos relevantes
+
+private:
+    std::vector<MaterialPrecio> materiales;
+
+    // Otros miembros relevantes
+
 };
 
+
 #endif // MATERIALPRECIO_HPP
+

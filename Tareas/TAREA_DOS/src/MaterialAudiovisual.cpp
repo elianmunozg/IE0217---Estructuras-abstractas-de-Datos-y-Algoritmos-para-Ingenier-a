@@ -1,5 +1,6 @@
 #include "MaterialAudiovisual.hpp"
 
+#include <vector>
 /**
  * @brief Constructor de la clase MaterialAudiovisual.
  * @param titulo Título del material audiovisual.
@@ -12,12 +13,8 @@
 MaterialAudiovisual::MaterialAudiovisual(const std::string& titulo, const std::string& autor, 
                                          const std::string& genero, int duracion, 
                                          const std::string& estado, double precio)
-: titulo(titulo), autor(autor), genero(genero), duracion(duracion), estado(estado), precio(precio) {}
+: titulo(titulo), autor(autor), genero(genero), duracion(duracion), estado(estado), precio(precio) {grupo="audiovisual"}
 
-// Destructor
-MaterialAudiovisual::~MaterialAudiovisual() {
-    // Código de limpieza si es necesario
-}
 
 // Getters para los atributos protegidos
 const std::string& MaterialAudiovisual::getTitulo() const {
@@ -42,4 +39,11 @@ const std::string& MaterialAudiovisual::getEstado() const {
 
 double MaterialAudiovisual::getPrecio() const {
     return precio;
+}
+const std::string& MaterialAudiovisual::getResumenContenido() const {
+    return resumenContenido;
+}
+
+const std::vector<std::string>& MaterialAudiovisual::getMaterialRelacionado() const {
+    return materialRelacionado;
 }

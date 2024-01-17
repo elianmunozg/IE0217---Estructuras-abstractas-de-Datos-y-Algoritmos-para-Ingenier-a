@@ -4,20 +4,30 @@
 #include "MaterialLectura.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Libro : public MaterialLectura {
-private:
-    std::string resumenContenido;
-    std::vector<std::string> materialRelacionado;
+protected:
+    std::string resumenContenido; // Almacena el resumen del contenido del libro
+    std::vector<std::string> materialRelacionado; // Lista de materiales relacionados
 
 public:
-    Libro(const std::string& titulo, const std::string& autor, const std::string& editorial, const std::string& genero, const std::string& estado, int cantidadHojas, double precio, const std::string& resumenContenido, const std::vector<std::string>& materialRelacionado);
+    // Constructor
+    Libro(const std::string& titulo, const std::string& autor, const std::string& editorial,
+          const std::string& genero, const std::string& estado, int cantidadHojas,
+          double precio, const std::string& resumenContenido,
+          const std::vector<std::string>& materialRelacionado);
+
+    // Destructor virtual por defecto
     virtual ~Libro() = default;
 
-    std::string determinarLongitud() const; // Método para determinar si el libro es corto, mediano o largo
-    virtual void imprimirInformacion() const override; // Implementación del método de la clase base
+    // Método para determinar la longitud del libro
+    std::string determinarLongitud() const;
 
-    // Otros métodos específicos para la clase Libro
+    // Implementación del método imprimirInformacion de la clase base
+    virtual void imprimirInformacion() const override;
+
+    // Posibles métodos adicionales específicos de la clase Libro
 };
 
 #endif // LIBRO_HPP

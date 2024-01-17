@@ -5,8 +5,9 @@
 #include <string>
 #include <vector>
 
+
 class Noticia : public MaterialLectura {
-private:
+protected:
     std::string resumenContenido;
     std::vector<std::string> materialRelacionado;
 

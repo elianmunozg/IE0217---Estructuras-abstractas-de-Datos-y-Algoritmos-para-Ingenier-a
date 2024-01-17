@@ -6,12 +6,16 @@
 #include <vector>
 
 class Podcast : public MaterialAudiovisual {
-private:
+protected:
     std::string resumenContenido;
     std::vector<std::string> materialRelacionado;
 
 public:
-    Podcast(const std::string& titulo, const std::string& autor, const std::string& genero, int duracion, const std::string& estado, double precio, const std::string& resumenContenido, const std::vector<std::string>& materialRelacionado);
+    Podcast(const std::string& titulo, const std::string& autor, 
+         const std::string& genero, int duracion, 
+         const std::string& estado, double precio, 
+         const std::string& resumenContenido, 
+         const std::vector<std::string>& materialRelacionado);
     virtual ~Podcast() = default;
 
     std::string determinarDuracion() const; // Método para determinar si el podcast es corto, mediano o largo
@@ -21,3 +25,4 @@ public:
 };
 
 #endif // PODCAST_HPP
+

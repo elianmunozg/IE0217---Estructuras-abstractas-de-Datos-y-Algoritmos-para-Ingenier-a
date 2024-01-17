@@ -1,5 +1,7 @@
 #include "MaterialLectura.hpp"
-#include <iostream>
+
+#include <memory>
+#include <vector>
 
 /**
  * @brief Constructor de la clase MaterialLectura.
@@ -13,10 +15,12 @@
  */
 MaterialLectura::MaterialLectura(const std::string& titulo, const std::string& autor, 
                                  const std::string& editorial, const std::string& genero, 
-                                 const std::string& estado, int cantidadHojas, double precio) 
+                                 const std::string& estado, int cantidadHojas, double precio, 
+                                 const std::string& resumenContenido, const std::vector<std::string>& materialRelacionado)
 : titulo(titulo), autor(autor), editorial(editorial), genero(genero), 
-  estado(estado), cantidadHojas(cantidadHojas), precio(precio) {
-    this->grupo = "lectura";
+  estado(estado), cantidadHojas(cantidadHojas), precio(precio), 
+  resumenContenido(resumenContenido), materialRelacionado(materialRelacionado) {
+    grupo = "lectura";
 }
 
 // Getters para los atributos protegidos
@@ -28,9 +32,7 @@ const std::string& MaterialLectura::getGrupo() const {
     return grupo;
 }
 
-const std::string& MaterialLectura::getTipoMaterial() const {
-    return tipoMaterial;
-}
+
 
 const std::string& MaterialLectura::getAutor() const {
     return autor;
@@ -54,4 +56,12 @@ int MaterialLectura::getCantidadHojas() const {
 
 double MaterialLectura::getPrecio() const {
     return precio;
+}
+
+ const std::string& MaterialLectura::getResumenContenido() const {
+    return resumenContenido;
+}
+
+const std::vector<std::string>& MaterialLectura::getMaterialRelacionado() const {
+    return materialRelacionado;
 }

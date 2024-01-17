@@ -12,12 +12,12 @@
  * @param materialRelacionado Lista de materiales relacionados.
  */
 Podcast::Podcast(const std::string& titulo, const std::string& autor, 
-                 const std::string& genero, int duracion, 
-                 const std::string& estado, double precio, 
-                 const std::string& resumenContenido, 
-                 const std::vector<std::string>& materialRelacionado) 
-: MaterialAudiovisual(titulo, autor, genero, duracion, estado, precio), 
-  resumenContenido(resumenContenido), materialRelacionado(materialRelacionado) {}
+             const std::string& genero, int duracion, const std::string& estado, 
+             double precio, const std::string& resumenContenido,
+             const std::vector<std::string>& materialRelacionado)
+    : MaterialLectura(titulo, autor, genero, duracion, estado,  precio, resumenContenido, materialRelacionado) {
+    
+}
 
 /**
  * @brief Método para determinar la duración del podcast.
@@ -30,10 +30,12 @@ std::string Podcast::determinarDuracion() const {
 }
 
 void Podcast::imprimirInformacion() const {
-    std::cout << "Titulo: " << getTitulo() << "\nCreador: " << getAutor()
-              << "\nGénero: " << getGenero() << "\nDuración: " << getDuracion() << " minutos"
-              << "\nEstado: " << getEstado() << "\nPrecio: " << getPrecio()
-              << "\nResumen del Contenido: " << getResumenContenido() << std::endl;
-
-    
+    std::cout << "Titulo: " << getTitulo() << "\nAutor: " << getAutor()
+              << "\nEditorial: " << getEditorial() << "\nGenero: " << getGenero()
+              << "\nEstado: " << getEstado() << "\nDuracion: " << getDuracion()
+              << "\nPrecio: " << getPrecio() << "\nResumen: " << resumenContenido << "\nMateriales Relacionados: ";
+    for (const auto& material : materialRelacionado) {
+        std::cout << material << "; ";
+    }
+    std::cout << std::endl;
 }

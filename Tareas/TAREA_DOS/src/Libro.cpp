@@ -1,6 +1,6 @@
 #include "Libro.hpp"
 #include <iostream>
-
+#include <vector>
 /**
  * @brief Constructor de la clase Libro.
  * @param titulo Título del libro.
@@ -13,12 +13,13 @@
  * @param resumenContenido Resumen del contenido del libro.
  * @param materialRelacionado Lista de materiales relacionados.
  */
-Libro::Libro(const std::string& titulo, const std::string& autor, 
-             const std::string& editorial, const std::string& genero, 
-             const std::string& estado, int cantidadHojas, double precio, 
-             const std::string& resumenContenido, const std::vector<std::string>& materialRelacionado)
-: MaterialLectura(titulo, autor, editorial, genero, estado, cantidadHojas, precio), 
-  resumenContenido(resumenContenido), materialRelacionado(materialRelacionado) {}
+Libro::Libro(const std::string& titulo, const std::string& autor, const std::string& editorial,
+             const std::string& genero, const std::string& estado, int cantidadHojas,
+             double precio, const std::string& resumenContenido,
+             const std::vector<std::string>& materialRelacionado)
+    : MaterialLectura(titulo, autor, editorial, genero, estado, cantidadHojas, precio, resumenContenido, materialRelacionado) {
+    
+}
 
 /**
  * @brief Determina la longitud del libro.
@@ -37,8 +38,10 @@ void Libro::imprimirInformacion() const {
     std::cout << "Titulo: " << getTitulo() << "\nAutor: " << getAutor()
               << "\nEditorial: " << getEditorial() << "\nGenero: " << getGenero()
               << "\nEstado: " << getEstado() << "\nCantidad de Hojas: " << getCantidadHojas()
-              << "\nPrecio: " << getPrecio() << "\nResumen: " << getResumenContenido() << std::endl;
-
-    
+              << "\nPrecio: " << getPrecio() << "\nResumen: " << resumenContenido << "\nMateriales Relacionados: ";
+    for (const auto& material : materialRelacionado) {
+        std::cout << material << "; ";
+    }
+    std::cout << std::endl;
 }
 
