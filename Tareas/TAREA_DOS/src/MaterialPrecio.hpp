@@ -15,10 +15,13 @@ private:
     std::vector<std::shared_ptr<MaterialAudiovisual>> materialesAudiovisuales;
 
 public:
-    MaterialPrecio();
+      MaterialPrecio();
     ~MaterialPrecio();
 
-    void ordenarPorPrecio(); // Método que emplea Bubble Sort
+    void anadirMaterial(const std::shared_ptr<MaterialLectura>& material);
+    void anadirMaterial(const std::shared_ptr<MaterialAudiovisual>& material);
+    void eliminarMaterial(const std::string& titulo);
+    void ordenarPorPrecio(bool ascendente = true);
     void imprimirMateriales() const;
     // Otros métodos relevantes
 };
