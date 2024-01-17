@@ -13,7 +13,7 @@
  * @param resumenContenido Resumen del contenido de la noticia.
  * @param materialRelacionado Lista de materiales relacionados.
  */
-(const std::string& titulo, const std::string& autor, const std::string& editorial,
+Noticia::Noticia(const std::string& titulo, const std::string& autor, const std::string& editorial,
              const std::string& genero, const std::string& estado, int cantidadHojas,
              double precio, const std::string& resumenContenido,
              const std::vector<std::string>& materialRelacionado)

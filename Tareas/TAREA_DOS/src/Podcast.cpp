@@ -15,7 +15,7 @@ Podcast::Podcast(const std::string& titulo, const std::string& autor,
              const std::string& genero, int duracion, const std::string& estado, 
              double precio, const std::string& resumenContenido,
              const std::vector<std::string>& materialRelacionado)
-    : MaterialLectura(titulo, autor, genero, duracion, estado,  precio, resumenContenido, materialRelacionado) {
+    : MaterialAudiovisual(titulo, autor, genero, duracion, estado,  precio, resumenContenido, materialRelacionado) {
     
 }
 
@@ -31,7 +31,7 @@ std::string Podcast::determinarDuracion() const {
 
 void Podcast::imprimirInformacion() const {
     std::cout << "Titulo: " << getTitulo() << "\nAutor: " << getAutor()
-              << "\nEditorial: " << getEditorial() << "\nGenero: " << getGenero()
+              << "\nGenero: " << getGenero()
               << "\nEstado: " << getEstado() << "\nDuracion: " << getDuracion()
               << "\nPrecio: " << getPrecio() << "\nResumen: " << resumenContenido << "\nMateriales Relacionados: ";
     for (const auto& material : materialRelacionado) {

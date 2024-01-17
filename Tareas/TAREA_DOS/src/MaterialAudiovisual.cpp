@@ -12,11 +12,19 @@
  */
 MaterialAudiovisual::MaterialAudiovisual(const std::string& titulo, const std::string& autor, 
                                          const std::string& genero, int duracion, 
-                                         const std::string& estado, double precio)
-: titulo(titulo), autor(autor), genero(genero), duracion(duracion), estado(estado), precio(precio) {grupo="audiovisual"}
+                                         const std::string& estado, double precio,
+                                         const std::string& resumenContenido, 
+                                         const std::vector<std::string>& materialRelacionado)
+: titulo(titulo), autor(autor), genero(genero), duracion(duracion), estado(estado), precio(precio) {grupo="audiovisual";}
 
 
 // Getters para los atributos protegidos
+
+const std::string& MaterialAudiovisual::getGrupo() const {
+    return grupo;
+}
+
+
 const std::string& MaterialAudiovisual::getTitulo() const {
     return titulo;
 }

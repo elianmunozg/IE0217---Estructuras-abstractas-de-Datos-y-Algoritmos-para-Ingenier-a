@@ -1,4 +1,7 @@
 # Tarea Dos
+Este programa consiste en una biblioteca virtua la cual ofrece la una serie de funcionalidades como buscar por nombre, además de poder eliminar algún objeto de la lista o poder agregarlo, otra funcionalidad se basa en poder ordenarlos por precio o por categoría de material, si es audiovisual o lectura.
+
+
 
 ## Parte Teórica 
 

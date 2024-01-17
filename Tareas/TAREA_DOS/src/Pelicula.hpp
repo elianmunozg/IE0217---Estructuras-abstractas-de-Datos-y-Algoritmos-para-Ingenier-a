@@ -18,11 +18,13 @@ public:
          const std::string& estado, double precio, 
          const std::string& resumenContenido, 
          const std::vector<std::string>& materialRelacionado);
-
+         std::string determinarDuracion() const;// Método para determinar si la película es corta, mediana o larga
+         virtual void imprimirInformacion() const override; // Implementación del método de la clase base
+    
     virtual ~Pelicula() = default;
 
-    std::string determinarDuracion() const; // Método para determinar si la película es corta, mediana o larga
-    virtual void imprimirInformacion() const override; // Implementación del método de la clase base
+    
+    
 };
 
 #endif // PELICULA_HPP

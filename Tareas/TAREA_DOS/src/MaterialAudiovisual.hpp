@@ -9,16 +9,17 @@ protected:
     std::string titulo;
     std::string grupo; // Siempre será "audiovisual"
     std::string autor;
-     
     std::string genero;
     int duracion; // En minutos
     std::string estado; // "disponible", "prestado", "reservado"
     double precio;
     std::string resumenContenido;
     std::vector<std::string> materialRelacionado;
-
 public:
-    MaterialAudiovisual(const std::string& titulo, const std::string& autor, const std::string& genero, int duracion, const std::string& estado, double precio);
+       MaterialAudiovisual(const std::string& titulo, const std::string& autor, const std::string& genero, 
+                        int duracion, const std::string& estado, double precio, 
+                        const std::string& resumenContenido, const std::vector<std::string>& materialRelacionado);
+
     virtual ~MaterialAudiovisual() = default;
 
     virtual void imprimirInformacion() const = 0;
@@ -31,7 +32,7 @@ public:
     const std::string& getEditorial() const;
     const std::string& getGenero() const;
     const std::string& getEstado() const;
-    int getDuracion() const;
+    virtual int getDuracion() const = 0;
     double getPrecio() const;
     const std::string& getResumenContenido() const;
     const std::vector<std::string>& getMaterialRelacionado() const;
