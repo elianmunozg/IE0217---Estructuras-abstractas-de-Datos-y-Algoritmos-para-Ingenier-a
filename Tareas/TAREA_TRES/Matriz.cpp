@@ -98,6 +98,21 @@ int Matriz<T>::getColumnas() const {
     return columnas;
 }
 
+template <typename T>
+T& Matriz<T>::operator()(int fila, int columna) {
+    if (fila >= filas || columna >= columnas || fila < 0 || columna < 0) {
+        throw std::out_of_range("Índice fuera de rango");
+    }
+    return data[fila][columna];
+}
+
+template <typename T>
+const T& Matriz<T>::operator()(int fila, int columna) const {
+    if (fila >= filas || columna >= columnas || fila < 0 || columna < 0) {
+        throw std::out_of_range("Índice fuera de rango");
+    }
+    return data[fila][columna];
+}
 
 // Declaraciones explícitas de las plantillas
 template class Matriz<int>;

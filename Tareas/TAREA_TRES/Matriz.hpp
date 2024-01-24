@@ -22,6 +22,8 @@ public:
     void pedirTamano();
     int getFilas() const;
     int getColumnas() const;
+    T& operator()(int fila, int columna);
+    const T& operator()(int fila, int columna) const;
     
 
 
@@ -31,7 +33,10 @@ private:
 
     bool esTipoPermitido();
 };
-
+template <typename T>
+Matriz<T>::Matriz(int filas, int columnas) : filas(filas), columnas(columnas) {
+    
+}
 
 
 #endif // MATRIZ_HPP

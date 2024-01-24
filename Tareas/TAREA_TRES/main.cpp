@@ -1,30 +1,34 @@
 #include "Matriz.hpp"
-#include "OperacionesBasicas.hpp"
+#include <iostream>
 
 int main() {
     try {
-        // Crear y llenar las matrices
-        Matriz<float> matriz1;
-        matriz1.pedirTamano();
-        matriz1.ingresarDatos();
+        // Crear la primera matriz y pedir su tamaño y datos
+        Matriz<int> m1;
+        std::cout << "Matriz 1:" << std::endl;
+        m1.pedirTamano();
+        m1.ingresarDatos();
 
-        Matriz<float> matriz2;
-        matriz2.pedirTamano();
-        matriz2.ingresarDatos();
+        // Crear la segunda matriz y pedir su tamaño y datos
+        Matriz<int> m2;
+        std::cout << "\nMatriz 2:" << std::endl;
+        m2.pedirTamano();
+        m2.ingresarDatos();
 
-        // Realizar operaciones
-        Matriz<float> suma = OperacionesBasicas<float>::sumar(matriz1, matriz2);
-        Matriz<float> resta = OperacionesBasicas<float>::restar(matriz1, matriz2);
-        Matriz<float> multiplicacion = OperacionesBasicas<float>::multiplicar(matriz1, matriz2);
+        // Crear una matriz para almacenar el resultado
+        // Asumimos que las matrices tienen el mismo tamaño
+        Matriz<int> resultado(m1.getFilas(), m1.getColumnas());
 
-        // Imprimir resultados
-        std::cout << "Suma:\n";
-        suma.imprimir();
-        std::cout << "Resta:\n";
-        resta.imprimir();
-        std::cout << "Multiplicación:\n";
-        multiplicacion.imprimir();
+        // Sumar las matrices
+        for (int i = 0; i < m1.getFilas(); ++i) {
+            for (int j = 0; j < m1.getColumnas(); ++j) {
+                resultado(i, j) = m1(i, j) + m2(i, j);
+            }
+        }
 
+        // Imprimir el resultado
+        std::cout << "\nResultado de la suma:" << std::endl;
+        resultado.imprimir();
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
