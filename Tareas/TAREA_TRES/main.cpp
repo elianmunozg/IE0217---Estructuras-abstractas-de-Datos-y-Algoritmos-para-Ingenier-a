@@ -1,25 +1,30 @@
 #include "Matriz.hpp"
-#include "OperacionesBasicas.hpp"
+#include "OperacionCompleja.hpp"
 #include <iostream>
+#include <complex>
 
 int main() {
+    // Crear una instancia de OperacionCompleja
+    OperacionCompleja<double> operaciones;
+
+    // Crear la primera matriz
+    Matriz<std::complex<double>> matriz1;
+    std::cout << "Creando la primera matriz de números complejos:" << std::endl;
+    matriz1.pedirTamano();
+    matriz1.ingresarDatos();
+
+    // Crear la segunda matriz
+    Matriz<std::complex<double>> matriz2;
+    std::cout << "\nCreando la segunda matriz de números complejos:" << std::endl;
+    matriz2.pedirTamano();
+    matriz2.ingresarDatos();
+
+    // Sumar las matrices y mostrar el resultado
     try {
-        Matriz<int> m1;
-        std::cout << "Matriz 1:" << std::endl;
-        m1.pedirTamano();
-        m1.ingresarDatos();
-
-        Matriz<int> m2;
-        std::cout << "\nMatriz 2:" << std::endl;
-        m2.pedirTamano();
-        m2.ingresarDatos();
-
-        OperacionesBasicas<int>::sumarYMostrar(m1, m2);
-        OperacionesBasicas<int>::restarYMostrar(m1, m2);
-        OperacionesBasicas<int>::multiplicarYMostrar(m1, m2);
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        operaciones.sumarYMostrar(matriz1, matriz2);
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Error al sumar matrices: " << e.what() << std::endl;
+        return 1;
     }
 
     return 0;

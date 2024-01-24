@@ -70,6 +70,33 @@ void Matriz<T>::ingresarDatos() {
     }
 }
 
+// Especialización para std::complex<float>
+template <>
+void Matriz<std::complex<float>>::ingresarDatos() {
+    std::cout << "Ingrese los elementos de la matriz (parte real e imaginaria):" << std::endl;
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            float valorReal, valorImaginario;
+            std::cin >> valorReal >> valorImaginario;
+            data[i][j] = std::complex<float>(valorReal, valorImaginario);
+        }
+    }
+}
+
+
+// Especialización para std::complex<double>
+template <>
+void Matriz<std::complex<double>>::ingresarDatos() {
+    std::cout << "Ingrese los elementos de la matriz (parte real e imaginaria):" << std::endl;
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            double valorReal, valorImaginario;
+            std::cin >> valorReal >> valorImaginario;
+            data[i][j] = std::complex<double>(valorReal, valorImaginario);
+        }
+    }
+}
+
 template <typename T>
 void Matriz<T>::imprimir() const {
     for (const auto& fila : data) {
@@ -114,6 +141,20 @@ const T& Matriz<T>::operator()(int fila, int columna) const {
     return data[fila][columna];
 }
 
+template <typename T>
+Matriz<T> Matriz<T>::operator+(const Matriz<T>& otra) const {
+    if (filas != otra.filas || columnas != otra.columnas) {
+        throw std::invalid_argument("Las matrices deben tener el mismo tamaño para sumarlas");
+    }
+
+    Matriz<T> resultado(filas, columnas);
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado(i, j) = this->data[i][j] + otra(i, j);
+        }
+    }
+    return resultado;
+}
 // Declaraciones explícitas de las plantillas
 template class Matriz<int>;
 template class Matriz<float>;
