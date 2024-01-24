@@ -1,5 +1,5 @@
 # Tarea 3
-
+Esta tarea se basa en la implementación de STL de C++ junto con aplicación de sobrecarga de operadores y expresiones regulares. Para esto se implementaron dos programas uno consiste en una calculadora matricial en el ejemplo se realizó con una compleja sin embargo también funciona para hacer operaciones simples, y el segundo en un prgrama de validación de correo eléctronico, para compilar el programa basta con utilizar el comando make.
 ## Templates
 
 ### 1. Definición de Templates
