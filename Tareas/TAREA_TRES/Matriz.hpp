@@ -20,6 +20,10 @@ public:
     void ingresarDatos();
     void imprimir() const;
     void pedirTamano();
+    int getFilas() const;
+    int getColumnas() const;
+    
+
 
 private:
     std::vector<std::vector<T>> data;
@@ -27,5 +31,7 @@ private:
 
     bool esTipoPermitido();
 };
+
+
 
 #endif // MATRIZ_HPP

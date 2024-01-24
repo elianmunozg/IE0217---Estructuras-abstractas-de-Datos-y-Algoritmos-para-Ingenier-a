@@ -88,6 +88,16 @@ bool Matriz<T>::esTipoPermitido() {
            std::is_same<T, std::complex<double>>::value;
 }
 
+template <typename T>
+int Matriz<T>::getFilas() const {
+    return filas;
+}
+
+template <typename T>
+int Matriz<T>::getColumnas() const {
+    return columnas;
+}
+
 
 // Declaraciones explícitas de las plantillas
 template class Matriz<int>;

@@ -1,26 +1,29 @@
 #include "Matriz.hpp"
-#include <complex>
+#include "OperacionesBasicas.hpp"
 
 int main() {
     try {
-        // Crear la primera instancia de Matriz
-        Matriz<float> matriz1; 
+        // Crear y llenar las matrices
+        Matriz<float> matriz1;
         matriz1.pedirTamano();
         matriz1.ingresarDatos();
 
-        // Crear la segunda instancia de Matriz
         Matriz<float> matriz2;
         matriz2.pedirTamano();
         matriz2.ingresarDatos();
 
-        // Imprimir ambas matrices
-        std::cout << "Matriz 1:" << std::endl;
-        matriz1.imprimir();
+        // Realizar operaciones
+        Matriz<float> suma = OperacionesBasicas<float>::sumar(matriz1, matriz2);
+        Matriz<float> resta = OperacionesBasicas<float>::restar(matriz1, matriz2);
+        Matriz<float> multiplicacion = OperacionesBasicas<float>::multiplicar(matriz1, matriz2);
 
-        std::cout << "Matriz 2:" << std::endl;
-        matriz2.imprimir();
-
-        // Aquí puedes realizar operaciones con ambas matrices
+        // Imprimir resultados
+        std::cout << "Suma:\n";
+        suma.imprimir();
+        std::cout << "Resta:\n";
+        resta.imprimir();
+        std::cout << "Multiplicación:\n";
+        multiplicacion.imprimir();
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
