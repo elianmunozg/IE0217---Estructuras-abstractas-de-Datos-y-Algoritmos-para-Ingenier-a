@@ -2,18 +2,17 @@
 #include "EmailValidator.hpp"
 
 int main() {
-    EmailValidator emailValidator; // Crea una instancia de la clase EmailValidator
-
+    EmailValidator validator;
     std::string email;
 
-    try {
-        std::cout << "Ingrese una dirección de correo electrónico: ";
-        std::cin >> email;
+    std::cout << "Ingrese una dirección de correo electrónico para validar: ";
+    std::getline(std::cin, email);
 
-        if (emailValidator.IsValidEmail(email)) {
+    try {
+        if (validator.IsValidEmail(email)) {
             std::cout << "La dirección de correo electrónico es válida." << std::endl;
         } else {
-            std::cout << "La dirección de correo electrónico no es válida." << std::endl;
+            std::cout << "La dirección de correo electrónico NO es válida." << std::endl;
         }
     } catch (const std::invalid_argument& e) {
         std::cerr << "Error: " << e.what() << std::endl;
