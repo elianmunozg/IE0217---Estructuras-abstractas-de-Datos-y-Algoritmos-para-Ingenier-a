@@ -40,9 +40,9 @@ for nombre, valor in alergias_a_agregar.items():
     gestor_alergias.agregar_alergia(nombre, valor)
 
 # Ejemplo de uso
-gestor_alergias.imprimir_todas()
-print("\nEjemplo de alergia específica:")
-gestor_alergias.imprimir_especifica("Chocolate")
+#gestor_alergias.imprimir_todas()
+#print("\nEjemplo de alergia específica:")
+#gestor_alergias.imprimir_especifica("Chocolate")
 
 # Definición de la clase EvaluacionEspecifica
 class EvaluacionEspecifica:
@@ -67,5 +67,64 @@ class EvaluacionEspecifica:
             print("No se encontraron alergias para esta puntuación.")
 
 # Ejemplo de uso con la puntuación 34
-evaluador = EvaluacionEspecifica(gestor_alergias)
-evaluador.imprimir_evaluacion(34)
+#evaluador = EvaluacionEspecifica(gestor_alergias)
+#evaluador.imprimir_evaluacion(33)
+
+# Definición de la clase TiposDeAlergias
+class TiposDeAlergias:
+    def __init__(self, gestor_alergias):
+        # Acceso a la clase Alergia para comparar con las entradas del usuario
+        self.gestor_alergias = gestor_alergias
+        # Almacenamiento de las alergias ingresadas por el usuario
+        self.alergias_usuario = []
+        # Almacenamiento de nombres y valores no coincidentes
+        self.nombres_no_encontrados = []
+        self.valores_no_encontrados = []
+
+    def agregar_alergia(self, nombre=None, valor=None):
+        # Verificar si se ha ingresado nombre, valor o ambos
+        if nombre and valor:
+            # Si se ingresa nombre y valor, se verifica si coinciden con los existentes
+            if valor in self.gestor_alergias.alergias.values() and nombre in self.gestor_alergias.alergias:
+                self.alergias_usuario.append((nombre, valor))
+            else:
+                # Si no coinciden, se agregan a las listas de no encontrados
+                if nombre not in self.gestor_alergias.alergias:
+                    self.nombres_no_encontrados.append(nombre)
+                if valor not in self.gestor_alergias.alergias.values():
+                    self.valores_no_encontrados.append(valor)
+        elif nombre:
+            # Solo se ingresa el nombre
+            if nombre in self.gestor_alergias.alergias:
+                self.alergias_usuario.append((nombre, self.gestor_alergias.alergias[nombre]))
+            else:
+                self.nombres_no_encontrados.append(nombre)
+        elif valor:
+            # Solo se ingresa el valor
+            encontrado = False
+            for nom, val in self.gestor_alergias.alergias.items():
+                if val == valor:
+                    self.alergias_usuario.append((nom, valor))
+                    encontrado = True
+                    break
+            if not encontrado:
+                self.valores_no_encontrados.append(valor)
+
+    def imprimir_alergias_usuario(self):
+        print("Alergias del usuario:", self.alergias_usuario)
+        print("Nombres de alergias no encontrados:", self.nombres_no_encontrados)
+        print("Valores de alergias no encontrados:", self.valores_no_encontrados)
+
+# Creación de la instancia de la clase TiposDeAlergias
+gestor_tipos_de_alergias = TiposDeAlergias(gestor_alergias)
+
+# Ejemplos de agregado de alergias por el usuario
+#gestor_tipos_de_alergias.agregar_alergia(nombre="Polen")  # Solo nombre
+#gestor_tipos_de_alergias.agregar_alergia(valor=128)       # Solo valor
+#gestor_tipos_de_alergias.agregar_alergia("Perros", 256)   # Nombre y valor que no coinciden
+#gestor_tipos_de_alergias.agregar_alergia("Manzanas", 8388608)  # Nombre y valor que coinciden
+
+# Imprimir las alergias del usuario y las listas de no coincidentes
+#gestor_tipos_de_alergias.imprimir_alergias_usuario()
+
+
