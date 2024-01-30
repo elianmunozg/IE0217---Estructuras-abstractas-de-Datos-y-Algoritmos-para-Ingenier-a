@@ -128,3 +128,43 @@ gestor_tipos_de_alergias = TiposDeAlergias(gestor_alergias)
 #gestor_tipos_de_alergias.imprimir_alergias_usuario()
 
 
+# Definición de la clase EvaluacionGeneral 
+class EvaluacionGeneral:
+    def __init__(self, alergias_usuario, nombres_no_encontrados, valores_no_encontrados):
+        # Alergias del usuario ya evaluadas (nombre y valor)
+        self.alergias_usuario = alergias_usuario
+        # Almacenamiento de alergias con nombre pero sin valor y viceversa
+        self.alergias_sin_puntuacion = nombres_no_encontrados
+        self.alergias_desconocidas = valores_no_encontrados
+
+    def calcular_puntuacion_general(self):
+        # Calcula la puntuación general sumando los valores de todas las alergias conocidas
+        return sum(valor for _, valor in self.alergias_usuario)
+
+    def calcular_promedio(self):
+        # Calcular el promedio de las alergias conocidas y desconocidas
+        total_conocido = sum(valor for _, valor in self.alergias_usuario)
+        total_desconocido = len(self.alergias_desconocidas)
+        return (total_conocido + total_desconocido) / (len(self.alergias_usuario) + total_desconocido) if total_desconocido > 0 else total_conocido
+
+    def imprimir_resultados(self):
+        print("Puntuación General de Alergias:", self.calcular_puntuacion_general())
+        print("Alergias sin Puntuación:", self.alergias_sin_puntuacion)
+        print("Resultados Desconocidos:", self.alergias_desconocidas)
+        print("Promedio de Alergias Conocidas y Desconocidas:", self.calcular_promedio())
+
+# El usuario agrega alergias (estos datos normalmente vendrían de la entrada del usuario)
+gestor_tipos_de_alergias.agregar_alergia(nombre="Chocolate", valor=32)
+gestor_tipos_de_alergias.agregar_alergia(nombre="Polen", valor=64)
+gestor_tipos_de_alergias.agregar_alergia(nombre="Nuez desconocida", valor=1000)  # Ejemplo de no coincidencia
+
+
+# Creación de la instancia de EvaluacionGeneral con los datos procesados
+evaluador_general = EvaluacionGeneral(
+    gestor_tipos_de_alergias.alergias_usuario, 
+    gestor_tipos_de_alergias.nombres_no_encontrados, 
+    gestor_tipos_de_alergias.valores_no_encontrados
+)
+
+# Uso del evaluador para calcular puntuaciones y promedios
+evaluador_general.imprimir_resultados()
