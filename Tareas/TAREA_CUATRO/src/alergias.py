@@ -1,10 +1,11 @@
 import cProfile
 import timeit
-
+# Definición de la clase Alergia
 class Alergia:
+    
     def __init__(self):
         self.alergias = {}
-
+    
     def agregar_alergia(self, nombre, valor):
         self.alergias[nombre] = valor
 
