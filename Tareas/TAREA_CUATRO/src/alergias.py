@@ -1,3 +1,6 @@
+import cProfile
+import timeit
+
 class Alergia:
     def __init__(self):
         self.alergias = {}
@@ -43,6 +46,34 @@ for nombre, valor in alergias_a_agregar.items():
 #gestor_alergias.imprimir_todas()
 #print("\nEjemplo de alergia específica:")
 #gestor_alergias.imprimir_especifica("Chocolate")
+    
+# Función para medir el rendimiento de agregar_alergia
+def medir_agregar_alergia():
+    alergias_a_agregar = {
+    "Huevos": 1, "Cacahuetes": 2, "Mariscos": 4, "Fresas": 8, "Tomates": 16,
+    "Chocolate": 32, "Polen": 64, "Gatos": 128, "Sardinas": 256, "Gluten": 512,
+    "Almendras": 536870912, "Canela": 1073741824, "Altramuces": 2147483648, 
+    "Mantequilla": 4294967296, "Pepino": 8589934592, "Cangrejo": 17179869184, 
+    "Almejas": 34359738368, "Anacardos": 68719476736, "Coliflor": 137438953472, 
+    "Pimienta": 274877906944, "Arándanos": 549755813888, "Pera": 1099511627776, 
+    "Cerveza": 2199023255552, "Guisantes": 4398046511104, "Ciruelas": 8796093022208, 
+    "Trigo": 17592186044416, "Higos": 35184372088832, "Centeno": 70368744177664, 
+    "Pistachos": 140737488355328, "Cangrejo de río": 281474976710656, "Col": 562949953421312,
+    "Huevo": 1024, "Nueces": 2048, "Leche": 4096, "Soja": 8192, "Miel": 16384,
+    "Piña": 32768, "Ajo": 65536, "Maíz": 131072, "Kiwi": 262144, "Menta": 524288,
+    "Gambas": 1048576, "Apio": 2097152, "Pescado": 4194304, "Manzanas": 8388608,
+    "Cilantro": 16777216, "Aguacate": 33554432, "Zanahorias": 67108864, "Berenjenas": 134217728,
+    "Lentejas": 268435456
+}
+
+    gestor_alergias = Alergia()
+    for nombre, valor in alergias_a_agregar.items():
+        gestor_alergias.agregar_alergia(nombre, valor)
+
+# Ejecutar la medición
+numero_de_ejecuciones = 100
+tiempo = timeit.timeit(medir_agregar_alergia, number=numero_de_ejecuciones)
+print(f"Tiempo promedio para agregar 50 alergias en {numero_de_ejecuciones} ejecuciones: {tiempo/numero_de_ejecuciones} segundos")
 
 # Definición de la clase EvaluacionEspecifica
 class EvaluacionEspecifica:
@@ -149,22 +180,113 @@ class EvaluacionGeneral:
 
     def imprimir_resultados(self):
         print("Puntuación General de Alergias:", self.calcular_puntuacion_general())
+        print("Las alergias del usuario son:", self.alergias_usuario)
         print("Alergias sin Puntuación:", self.alergias_sin_puntuacion)
         print("Resultados Desconocidos:", self.alergias_desconocidas)
         print("Promedio de Alergias Conocidas y Desconocidas:", self.calcular_promedio())
 
 # El usuario agrega alergias (estos datos normalmente vendrían de la entrada del usuario)
-gestor_tipos_de_alergias.agregar_alergia(nombre="Chocolate", valor=32)
-gestor_tipos_de_alergias.agregar_alergia(nombre="Polen", valor=64)
-gestor_tipos_de_alergias.agregar_alergia(nombre="Nuez desconocida", valor=1000)  # Ejemplo de no coincidencia
+#gestor_tipos_de_alergias.agregar_alergia(nombre="Chocolate", valor=32)
+#gestor_tipos_de_alergias.agregar_alergia(nombre="Polen", valor=64)
+#gestor_tipos_de_alergias.agregar_alergia(nombre="Nuez desconocida", valor=1000)  # Ejemplo de no coincidencia
 
 
 # Creación de la instancia de EvaluacionGeneral con los datos procesados
-evaluador_general = EvaluacionGeneral(
-    gestor_tipos_de_alergias.alergias_usuario, 
-    gestor_tipos_de_alergias.nombres_no_encontrados, 
-    gestor_tipos_de_alergias.valores_no_encontrados
-)
+#evaluador_general = EvaluacionGeneral(
+#    gestor_tipos_de_alergias.alergias_usuario, 
+#    gestor_tipos_de_alergias.nombres_no_encontrados, 
+#    gestor_tipos_de_alergias.valores_no_encontrados
+#)
 
 # Uso del evaluador para calcular puntuaciones y promedios
-evaluador_general.imprimir_resultados()
+#evaluador_general.imprimir_resultados()
+
+def menu_principal():
+     while True:
+        print("\nMenu Principal")
+        print("1. Evaluar por puntuación las alergias")
+        print("2. Agregar nueva alergia")
+        print("3. Ver todas las alergias")
+        print("4. Agregar alergia del usuario por nombre, valor o ambas")
+        print("5. Evaluar alergias del usuario")
+        print("6. Salir")
+        print("7. Buscar alergia por nombre")
+        opcion = input("Elige una opción: ")
+
+        if opcion == '1':
+            evaluar_puntuacion_alergia()
+        elif opcion == '2':
+            agregar_nueva_alergia()
+        elif opcion == '3':
+            ver_todas_alergias()
+        elif opcion == '4':
+            agregar_alergia_usuario()
+        elif opcion == '5':
+            evaluar_alergias_usuario()
+        elif opcion == '7':
+            buscar_alergia_por_nombre()
+        elif opcion == '6':
+            print("Saliendo...")
+            break
+        else:
+            print("Opción no válida. Por favor, intenta de nuevo.")
+
+def evaluar_puntuacion_alergia():
+    puntuacion = input("Ingresa tu puntuación de alergia: ")
+    try:
+        puntuacion = int(puntuacion)
+        evaluador = EvaluacionEspecifica(gestor_alergias)
+        evaluador.imprimir_evaluacion(puntuacion)
+    except ValueError:
+        print("Por favor, ingresa un número entero válido.")
+def agregar_alergia_usuario():
+    nombre = input("Ingresa el nombre de la alergia (deja en blanco si solo quieres ingresar el valor): ")
+    valor = input("Ingresa el valor de la alergia (deja en blanco si solo quieres ingresar el nombre): ")
+    
+    # Convertir valor a entero si no está vacío
+    if valor:
+        try:
+            valor = int(valor)
+        except ValueError:
+            print("El valor debe ser un número entero.")
+            return
+
+    # No es necesario convertir nombre a string, ya que input() devuelve un string
+    if nombre or valor:
+        gestor_tipos_de_alergias.agregar_alergia(nombre=nombre if nombre else None, valor=valor if valor else None)
+    else:
+        print("No se ingresó ninguna alergia.")
+
+def agregar_nueva_alergia():
+    nombre = input("Ingresa el nombre de la alergia: ")
+    valor = input("Ingresa el valor de la alergia (debe ser un entero): ")
+
+    # Convertir valor a entero si no está vacío
+    if valor:
+        try:
+            valor = int(valor)
+        except ValueError:
+            print("El valor debe ser un número entero.")
+            return
+    if nombre or valor:
+        gestor_alergias.agregar_alergia(nombre=nombre, valor=valor)
+    else:
+        print("No se ingresó ninguna alergia.")
+
+def evaluar_alergias_usuario():
+    evaluador_general = EvaluacionGeneral(
+        gestor_tipos_de_alergias.alergias_usuario, 
+        gestor_tipos_de_alergias.nombres_no_encontrados, 
+        gestor_tipos_de_alergias.valores_no_encontrados
+    )
+    evaluador_general.imprimir_resultados()
+def ver_todas_alergias():
+    gestor_alergias.imprimir_todas()
+
+def buscar_alergia_por_nombre():
+    nombre = input("Ingresa el nombre de la alergia que deseas buscar: ")
+    gestor_alergias.imprimir_especifica(nombre)
+
+
+# Iniciar la interfaz de usuario estudiando su rendimiento
+cProfile.run('menu_principal()')

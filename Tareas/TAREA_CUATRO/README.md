@@ -248,5 +248,60 @@ class Derivada(Base):
 obj = Derivada()
 obj.saludar()  # Imprime: Hola desde la clase derivada
 ```
+## Parte Práctica: Rendimiento 
+**Medición de Tiempo de Ejecución**
 
+| Cantidad de Alergias | Ejecuciones | Tiempo Promedio por Ejecución (segundos) |
+|----------------------|-------------|------------------------------------------|
+| 10                   | 100         | 7.268000008480157e-06                    |
+| 50                   | 100         | 1.4238999974622856e-05                   |
+| 100                  | 100         | 1.651400001719594e-05                    |
+| 200                  | 100         | 3.569299999071518e-05                    |
 
+Los resultados sugieren que el tiempo de ejecución crece con el número de alergias, lo cual es esperado. Sin embargo, el crecimiento no parece ser lineal, indicando que hay eficiencia en la forma en que se manejan las alergias a medida que el conjunto de datos se vuelve más grande. El uso de un diccionario (self.alergias) es eficiente para este propósito además de optimizar el proceso de busqueda en las demás clases.
+**Perfilado del Código**
+| Función                            | ncalls | tottime  | percall  | cumtime  | percall  |
+|------------------------------------|--------|----------|----------|----------|----------|
+| `<built-in method builtins.input>` | 13     | 59.695s  | 4.592s   | 59.695s  | 4.592s   |
+| `<built-in method builtins.print>` | 118    | 0.060s   | 0.001s   | 0.060s   | 0.001s   |
+| `agregar_alergia`                  | 2      | 0.000s   | 0.000s   | 0.000s   | 0.000s   |
+| `imprimir_todas`                   | 1      | 0.002s   | 0.002s   | 0.036s   | 0.036s   |
+| `imprimir_especifica`              | 1      | 0.000s   | 0.000s   | 0.001s   | 0.001s   |
+| `menu_principal`                   | 1      | 0.000s   | 0.000s   | 59.758s  | 59.758s  |
+| `evaluar_puntuacion_alergia`       | 1      | 0.000s   | 0.000s   | 2.433s   | 2.433s   |
+| `agregar_alergia_usuario`          | 1      | 0.000s   | 0.000s   | 3.920s   | 3.920s   |
+| `agregar_nueva_alergia`            | 1      | 0.000s   | 0.000s   | 9.080s   | 9.080s   |
+| `evaluar_alergias_usuario`         | 1      | 0.000s   | 0.000s   | 0.002s   | 0.002s   |
+| `buscar_alergia_por_nombre`        | 1      | 0.000s   | 0.000s   | 4.074s   | 4.074s   |
+
+Según los datos obtenidos  la mayor parte del tiempo se gasta en {built-in method builtins.input}, lo cual indica que el programa pasa la mayor parte del tiempo esperando la entrada del usuario. Este es un comportamiento esperado para programas interactivos, pero para pruebas de rendimiento, esto puede distorsionar la comprensión del rendimiento real del código.
+
+Uso de la Función print: Se observa una cantidad significativa de tiempo en {built-in method builtins.print}, lo que sugiere que hay muchas operaciones de impresión. Aunque individualmente no consumen mucho tiempo, podrían sumarse y afectar el rendimiento en ciertos contextos.
+
+Eficiencia de las Funciones de Gestión de Alergias: Las funciones relacionadas con la gestión de alergias (agregar_alergia, imprimir_todas, imprimir_especifica, etc.) consumen muy poco tiempo. Esto indica que estas partes del programa son eficientes.
+
+### Conclusión y Recomendaciones
+
+1. **Automatización de Entradas para Pruebas**: 
+   - Automatizar entradas para que el tiempo de espera del usuario no afecte las mediciones.
+
+2. **Revisión de Salidas en Consola**: 
+   - Reducir las llamadas a `print`, especialmente en bucles.
+
+3. **Enfoque en la Experiencia del Usuario**: 
+   - Mejorar la interacción y la presentación de resultados para el usuario.
+
+4. **Análisis Continuo**: 
+   - Utilizar `cProfile` para monitorear el impacto de cualquier cambio en el rendimiento.onclusión y Recomendaciones
+
+1. **Automatización de Entradas para Pruebas**: 
+   - Automatizar entradas para que el tiempo de espera del usuario no afecte las mediciones.
+
+2. **Revisión de Salidas en Consola**: 
+   - Reducir las llamadas a `print`, especialmente en bucles.
+
+3. **Enfoque en la Experiencia del Usuario**: 
+   - Mejorar la interacción y la presentación de resultados para el usuario.
+
+4. **Análisis Continuo**: 
+   - Utilizar `cProfile` para monitorear el impacto de cualquier cambio en el rendimiento.
