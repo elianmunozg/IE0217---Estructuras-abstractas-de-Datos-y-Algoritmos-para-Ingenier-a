@@ -1,5 +1,27 @@
 # Tarea 4
+La finalidad de este programa consiste en poder gestionar la evaluación de alergias de una persona.
+## Intrucciones de ejecución
+Al ejecutar el comando make se desplegará un menú como se muestra a continuación, el usuario deberá ingresar el numero de la opción a la que desea acceder:
+```
+Menu Principal
+1. Evaluar por puntuación las alergias
+2. Agregar nueva alergia
+3. Ver todas las alergias
+4. Agregar alergia del usuario por nombre, valor o ambas
+5. Evaluar alergias del usuario
+6. Salir
+7. Buscar alergia por nombre
+Elige una opción:
+```
+- La opción 1 permite al usuario ver sus alergias según su puntuación. Al ingresar el valor se mostrará el desglose de sus aelrgias.
+- La opción 2 permite agregar alergias a la base de alergias del sistema.
+- La opción 3 permite ver todas las alergias almacenadas en el sistema.
+- La opción 4 permite agregar las alergias mediante el nombre, valor o ambos, de no encontrarse la alergia indicada se agregará a un lista extra de valores o nombres no encontrados según corresponda.
+- La opción 5 permite visualizar de forma general las alergias ingresadas por el usuario mediante la opción 4 y ofrece el promedio de valores de dichas alergias, tanto de las que se encontraron como las que no se encontraron.
+- La opción 6 permite terminar la ejecución del programa.
+- La opción 7 permite al usuario buscar una alergia en específico almacenada en el sistema por su nombre.
 
+Una vez terminada la ejecución se mostrará el perfilado del código en dicha ejecución 
 ## Parte Teórica
 ### Diferencia entre una lista y una tupla en Python.
 - **Lista:**
@@ -305,3 +327,4 @@ Eficiencia de las Funciones de Gestión de Alergias: Las funciones relacionadas 
 
 4. **Análisis Continuo**: 
    - Utilizar `cProfile` para monitorear el impacto de cualquier cambio en el rendimiento.
+
