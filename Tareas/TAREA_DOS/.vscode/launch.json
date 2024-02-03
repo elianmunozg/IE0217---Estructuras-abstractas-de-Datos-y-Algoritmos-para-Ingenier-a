@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Dell/Documents/Scripts/ie0624/Laboratorio2",
-      "program": "c:/Users/Dell/Documents/Scripts/ie0624/Laboratorio2/build/Debug/outDebug",
+      "cwd": "c:/Users/Dell/Documents/Scripts/ie0217/Tareas/TAREA_DOS/src",
+      "program": "c:/Users/Dell/Documents/Scripts/ie0217/Tareas/TAREA_DOS/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

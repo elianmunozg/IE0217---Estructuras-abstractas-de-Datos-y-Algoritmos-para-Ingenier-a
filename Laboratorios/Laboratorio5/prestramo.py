@@ -141,6 +141,3 @@ if __name__ == "__main__":
     main()
 
 
-# Verifica si el script es el punto de entrada principal para ejecutar la función main.
-if __name__ == "__main__":
-    main()
