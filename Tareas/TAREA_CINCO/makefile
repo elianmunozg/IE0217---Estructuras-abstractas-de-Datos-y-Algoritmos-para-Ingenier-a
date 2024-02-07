@@ -9,9 +9,9 @@ SRC_DIR := src
 all: run_practica1 run_practica2
 
 run_practica1:
-	@echo Ejecutando practica1.py usando Anaconda Python
+	@echo Ejecutando practica1.py 
 	@$(PYTHON) $(SRC_DIR)/practica1.py
 
 run_practica2:
-	@echo Ejecutando practica2.py usando Anaconda Python
+	@echo Ejecutando practica2.py 
 	@$(PYTHON) $(SRC_DIR)/practica2.py
