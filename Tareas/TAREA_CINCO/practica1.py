@@ -5,12 +5,34 @@ import seaborn as sns
 
 
 class DataManager:
+    """
+        La clase DataManager se encarga de la carga y la limpieza de los datos de un archivo CSV.
+        
+        Attributes:
+            file_path (str): La ruta al archivo CSV que se va a cargar y limpiar.
+            data_cleaned (DataFrame): Un DataFrame de pandas que contiene los datos ya limpios y listos para su análisis.
+            
+        Methods:
+            load_and_clean_data(): Carga los datos del CSV, realiza una limpieza preliminar y los almacena en `data_cleaned`.
+            get_cleaned_data(): Devuelve el DataFrame de los datos ya limpios.
+        """
     def __init__(self, file_path):
+        """
+        Inicializa la instancia de DataManager con la ruta del archivo proporcionada.
+        
+        Parameters:
+            file_path (str): La ruta al archivo CSV que se va a cargar y limpiar.
+        """
         self.file_path = file_path
         self.data_cleaned = None
 
     def load_and_clean_data(self):
-        """Carga y limpia el archivo CSV."""
+        """
+        Carga los datos desde el archivo CSV indicado en `file_path`. Realiza la limpieza de datos eliminando filas innecesarias,
+        renombrando columnas y convirtiendo las cadenas numéricas con comas a valores numéricos. Los datos limpios se almacenan en `data_cleaned`.
+        
+        El método maneja excepciones para evitar que el programa falle si hay problemas al cargar el archivo.
+        """
         try:
             data = pd.read_csv(self.file_path, skiprows=1)
             data = data.iloc[:9]  # Mantener solo las primeras 9 filas
@@ -24,23 +46,51 @@ class DataManager:
             print(f"Error loading the file: {e}")
 
     def get_cleaned_data(self):
-        """Devuelve los datos limpios."""
+        """
+        Devuelve el DataFrame de los datos limpios almacenados en `data_cleaned`.
+        
+        Returns:
+            DataFrame: Un DataFrame de pandas que contiene los datos ya limpios y listos para su análisis.
+        """
         return self.data_cleaned
 
 
 class DataAnalyzer:
+    """
+    La clase DataAnalyzer se encarga de analizar un conjunto de datos de objetos prohibidos interceptados en aeropuertos.
+    
+    Attributes:
+        data (DataFrame): Un DataFrame que contiene los datos que serán analizados.
+        
+    Methods:
+        analyze_data(): Procesa y analiza los datos, proporcionando estadísticas descriptivas y identificando tendencias.
+    """
     def __init__(self, data):
+        """
+        Inicializa la instancia de DataAnalyzer con el DataFrame de datos a analizar.
+        
+        Parameters:
+            data (DataFrame): Un DataFrame de pandas que contiene los datos a analizar.
+        """
         self.data = data
 
     def analyze_data(self):
-        """Realiza análisis en los datos con manejo de excepciones."""
+        """
+        Realiza el análisis de los datos proporcionados.
+        
+        El método maneja excepciones para garantizar que las operaciones de cadena se apliquen solo a columnas de tipo cadena y
+        realiza la conversión a tipo numérico de manera segura. Calcula y muestra estadísticas descriptivas, identifica la categoría
+        con la mayor cantidad de objetos interceptados y muestra las tendencias a lo largo de los años.
+        
+        Utiliza un enfoque robusto para la conversión de datos, controlando los errores y proporcionando comentarios útiles para la depuración.
+        """
         for year in ['2002', '2003', '2004', '2005']:
             try:
                 # Intenta reemplazar comas y convertir a numérico
                 self.data[year] = pd.to_numeric(
                     self.data[year].str.replace(',', ''), errors='coerce')
             except AttributeError:
-                # Si se produce un AttributeError, probablemente debido a que la columna no es de tipo string
+                # Manejo de excepciones en caso de que la columna no sea una cadena
                 print(
                     f"Advertencia: La columna {year} no se trató como string. Verificando el tipo de datos...")
                 # Verifica y muestra el tipo de datos actual de la columna
@@ -54,7 +104,7 @@ class DataAnalyzer:
                     print(
                         f"La columna {year} necesita revisión manual para la conversión.")
 
-        # Calcular estadísticas descriptivas
+       # Estadísticas descriptivas de los datos
         descriptive_stats = self.data.describe()
 
         # Calcular totales por categoría excluyendo 'Total prohibited items' y 'Enplanements'
@@ -69,7 +119,7 @@ class DataAnalyzer:
             f"La categoría específica con más objetos interceptados es '{max_category}' con un total de {max_value} objetos.")
         print("\nEstadísticas descriptivas por año:\n", descriptive_stats)
 
-        # Identificar tendencias
+        # Tendencias a lo largo de los años
         totals_by_year = self.data.sum()[1:]  # Excluir la columna de categoría
         print("\nTotales por año:\n", totals_by_year)
 
@@ -77,11 +127,33 @@ class DataAnalyzer:
 
 
 class DataVisualizer:
+    """
+    La clase DataVisualizer se encarga de crear visualizaciones gráficas a partir de un conjunto de datos de objetos prohibidos interceptados en aeropuertos.
+
+    Attributes:
+        data (DataFrame): Un DataFrame que contiene los datos que serán visualizados.
+
+    Methods:
+        plot_totals_by_year(): Crea y muestra un gráfico de líneas de los totales por año.
+        plot_most_confiscated_item(): Crea y muestra un gráfico de barras del objeto más confiscado.
+        plot_heatmap(): Crea y muestra un heatmap de los objetos prohibidos interceptados por categoría y año.
+        plot_boxplot(): Crea y muestra un boxplot de los objetos prohibidos interceptados por año para cada categoría.
+    """
+    
     def __init__(self, data):
+        """
+        Inicializa la instancia de DataVisualizer con el DataFrame de datos a visualizar.
+
+        Parameters:
+            data (DataFrame): Un DataFrame de pandas que contiene los datos a visualizar.
+        """
         self.data = data
 
     def plot_totals_by_year(self):
-        """Visualiza los totales por año en un gráfico de líneas."""
+        """
+        Genera un gráfico de líneas que representa los totales de objetos prohibidos interceptados por año.
+        Muestra las tendencias a lo largo del tiempo y destaca cómo cambia la cantidad de interceptaciones.
+        """
         totals_by_year = self.data[['2002', '2003', '2004', '2005']].sum()
         plt.figure(figsize=(10, 6))
         totals_by_year.plot(kind='line', marker='o', linestyle='-',
@@ -95,7 +167,10 @@ class DataVisualizer:
         plt.show()
 
     def plot_most_confiscated_item(self):
-        """Visualiza el objeto con más decomisos."""
+        """
+        Genera un gráfico de barras que representa el número de decomisos por categoría.
+        Identifica y resalta la categoría con el mayor número de objetos confiscados.
+        """
         total_per_category = self.data.set_index('Category').sum(axis=1).drop(
             ['Total prohibited items', 'Enplanements '], errors='ignore')
         most_confiscated_category = total_per_category.idxmax()
@@ -112,7 +187,10 @@ class DataVisualizer:
         plt.show()
 
     def plot_heatmap(self):
-        """Visualiza un heatmap de los objetos prohibidos interceptados por categoría a lo largo de los años."""
+        """
+        Genera un heatmap para visualizar la cantidad de objetos prohibidos interceptados, categorizados por tipo y año.
+        Este gráfico ayuda a identificar rápidamente las categorías y los años con mayores incidencias.
+        """
         plt.figure(figsize=(10, 8))
         sns.heatmap(self.data.set_index('Category').drop(
             ['Total prohibited items', 'Enplanements '], errors='ignore'), annot=True, fmt="d", cmap='Blues')
@@ -122,7 +200,10 @@ class DataVisualizer:
         plt.show()
 
     def plot_boxplot(self):
-        """Visualiza boxplots de los objetos prohibidos interceptados a lo largo de los años para cada categoría."""
+        """
+        Genera boxplots que muestran la distribución de la cantidad de objetos prohibidos interceptados por año para cada categoría.
+        Esta visualización es útil para identificar la variabilidad y los valores atípicos en los datos.
+        """
         melted_data = self.data.melt(
             id_vars='Category', var_name='Year', value_name='Items Intercepted')
         melted_data = melted_data[melted_data['Category'].isin(
@@ -134,27 +215,31 @@ class DataVisualizer:
         plt.ylabel('Cantidad de Objetos Interceptados')
         plt.show()
 
-
+# Se declara la ruta al archivo CSV que contiene los datos.
 file_path = 'table_02_16b.csv'
 
-# Cargar y limpiar los datos
+# Se crea una instancia de DataManager, la cual se encarga de la carga y limpieza de los datos.
 data_manager = DataManager(file_path)
+# Se llama al método para cargar y limpiar los datos, y se almacenan en la variable 'cleaned_data'.
 data_manager.load_and_clean_data()
 cleaned_data = data_manager.get_cleaned_data()
 
-# Analizar los datos
+# Se crea una instancia de DataAnalyzer, proporcionando los datos limpios para su análisis.
 data_analyzer = DataAnalyzer(cleaned_data)
+# Se llama al método para analizar los datos, que imprimirá los resultados en la consola.
 data_analyzer.analyze_data()
 
-# Visualizar los datos
+# Se crea una instancia de DataVisualizer, pasando los datos limpios para su visualización.
 data_visualizer = DataVisualizer(cleaned_data)
+# Se llama a distintos métodos de la instancia para generar y mostrar visualizaciones de los datos.
+# Este método genera un gráfico de líneas que muestra los totales de objetos prohibidos interceptados por año.
 data_visualizer.plot_totals_by_year()
 
-# Visualizar el objeto con más decomisos
+# Este método muestra un gráfico de barras del objeto más confiscado por categoría.
 data_visualizer.plot_most_confiscated_item()
 
-# Visualizar el heatmap
+# Este método crea un heatmap que visualiza los objetos prohibidos interceptados por categoría y año.
 data_visualizer.plot_heatmap()
 
-# Visualizar el boxplot
+# Este método genera boxplots que muestran la distribución de los objetos prohibidos interceptados por año y categoría.
 data_visualizer.plot_boxplot()
