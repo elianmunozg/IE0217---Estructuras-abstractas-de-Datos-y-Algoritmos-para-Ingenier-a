@@ -1,6 +1,8 @@
 # Tarea 5
-En la práctica1 se realiza un estudio estadísco sobre "Prohibited Items Intercepted at Airport Screening Checkpoints" los datos recopilados por  Bureau of Transportation Statistics se guardaron localmente a través de https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/national_transportation_statistics/2007/csv/table_02_16b.csv.
+## Intrucciones para ejecutar 
+Ejecute el comando make dentro de la carpeta TAREA_CINCO
 
+En la práctica1 se realiza un estudio estadísco sobre "Prohibited Items Intercepted at Airport Screening Checkpoints" los datos recopilados por  Bureau of Transportation Statistics se guardaron localmente a través de https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/national_transportation_statistics/2007/csv/table_02_16b.csv.
 
 ## Análisis de los datos sobre Objetos Prohibidos Interceptados en Puntos de Control de Seguridad
 
