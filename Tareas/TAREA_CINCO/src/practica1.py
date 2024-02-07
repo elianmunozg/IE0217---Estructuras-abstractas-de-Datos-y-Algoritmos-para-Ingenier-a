@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 
 class DataManager:
@@ -215,31 +216,31 @@ class DataVisualizer:
         plt.ylabel('Cantidad de Objetos Interceptados')
         plt.show()
 
-# Se declara la ruta al archivo CSV que contiene los datos.
-file_path = 'table_02_16b.csv'
+#Se obtiene la ruta al directorio actual donde se ejecuta el script
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Se crea una instancia de DataManager, la cual se encarga de la carga y limpieza de los datos.
+# Se construye la ruta al archivo CSV utilizando la ruta al directorio actual
+file_path = os.path.join(current_dir, 'table_02_16b.csv')
+
+# Cargar y limpiar los datos
 data_manager = DataManager(file_path)
-# Se llama al método para cargar y limpiar los datos, y se almacenan en la variable 'cleaned_data'.
 data_manager.load_and_clean_data()
 cleaned_data = data_manager.get_cleaned_data()
 
-# Se crea una instancia de DataAnalyzer, proporcionando los datos limpios para su análisis.
+# Analizar los datos
 data_analyzer = DataAnalyzer(cleaned_data)
-# Se llama al método para analizar los datos, que imprimirá los resultados en la consola.
 data_analyzer.analyze_data()
 
-# Se crea una instancia de DataVisualizer, pasando los datos limpios para su visualización.
+# Visualizar los datos
 data_visualizer = DataVisualizer(cleaned_data)
-# Se llama a distintos métodos de la instancia para generar y mostrar visualizaciones de los datos.
-# Este método genera un gráfico de líneas que muestra los totales de objetos prohibidos interceptados por año.
 data_visualizer.plot_totals_by_year()
 
-# Este método muestra un gráfico de barras del objeto más confiscado por categoría.
+# Visualizar el objeto con más decomisos
 data_visualizer.plot_most_confiscated_item()
 
-# Este método crea un heatmap que visualiza los objetos prohibidos interceptados por categoría y año.
+# Visualizar el heatmap
 data_visualizer.plot_heatmap()
 
-# Este método genera boxplots que muestran la distribución de los objetos prohibidos interceptados por año y categoría.
+# Visualizar el boxplot
 data_visualizer.plot_boxplot()
+

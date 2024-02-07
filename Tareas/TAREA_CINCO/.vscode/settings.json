@@ -1,3 +1,4 @@
 {
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "makefile.makefilePath": "C:\\Users\\Dell\\Documents\\Scripts\\ie0217\\Tareas\\TAREA_CINCO\\makefile"
 }
