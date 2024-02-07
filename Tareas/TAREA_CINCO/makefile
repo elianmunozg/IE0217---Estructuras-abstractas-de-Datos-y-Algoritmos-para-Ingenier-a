@@ -1,7 +1,4 @@
-# Makefile para Windows usando Anaconda Python
-
-# Comando de Python, asumiendo que 'python' ya está en tu PATH
-PYTHON := conda run -n base python
+PYTHON := python
 
 # Directorio de los scripts
 SRC_DIR := src
