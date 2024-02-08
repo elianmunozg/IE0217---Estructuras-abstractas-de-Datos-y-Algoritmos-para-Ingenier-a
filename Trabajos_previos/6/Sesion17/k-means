@@ -1,0 +1,42 @@
+from sklearn.cluster import KMeans  # Importamos KMeans para clustering.
+import numpy as np  # NumPy para cálculos numéricos y manejo de arreglos.
+import matplotlib.pyplot as plt  # Matplotlib para visualización de datos.
+
+# Generar datos aleatorios
+np.random.seed(42)  # Para reproducibilidad
+n = 100  # Número de puntos
+X = np.random.rand(n, 2) * 10  # 100 puntos bidimensionales en un rango de 0 a 10
+
+# Configurar subgráficos
+plt.figure(figsize=(12, 5))  # Tamaño de la figura
+
+# Subgráfico 1: Visualización de puntos de datos aleatorios
+plt.subplot(1, 2, 1)  # Primer subgráfico en una fila de 2 gráficos
+plt.scatter(X[:, 0], X[:, 1], c='blue', marker='o')  # Puntos de datos
+plt.title('Puntos de Datos Aleatorios')  # Título
+plt.xlabel('Característica 1')  # Etiqueta eje X
+plt.ylabel('Característica 2')  # Etiqueta eje Y
+
+# Configuración de K-Means con un número de clusters (K) específico
+kmeans = KMeans(n_clusters=3)  # Instanciamos KMeans con 3 clusters
+kmeans.fit(X)  # Ajuste del modelo a los datos
+
+# Etiquetas de los clusters y coordenadas de los centroides
+labels = kmeans.labels_
+centroids = kmeans.cluster_centers_
+
+# Subgráfico 2: Resultado del clustering con K-Means
+plt.subplot(1, 2, 2)  # Segundo subgráfico
+for i in range(len(X)):
+    plt.scatter(X[i][0], X[i][1], c=('r' if labels[i] == 0 else 'b' if labels[i] == 1 else 'g'), marker='o')  # Puntos clasificados
+plt.scatter(centroids[:, 0], centroids[:, 1], c='black', marker='x', s=200, label='Centroids')  # Centroides
+plt.title('Resultado del Clustering con K-Means')  # Título
+plt.xlabel('Característica 1')  # Etiqueta eje X
+plt.ylabel('Característica 2')  # Etiqueta eje Y
+plt.legend()  # Leyenda
+
+# Ajustar el diseño para evitar solapamientos
+plt.tight_layout()
+
+# Mostrar los subgráficos
+plt.show()
