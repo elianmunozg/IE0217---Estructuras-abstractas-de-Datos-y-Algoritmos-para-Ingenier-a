@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt  # Matplotlib para visualización de datos.
 # Generar datos aleatorios
 np.random.seed(42)  # Para reproducibilidad
 n = 100  # Número de puntos
-X = np.random.rand(n, 2) * 10  # 100 puntos bidimensionales en un rango de 0 a 10
+# 100 puntos bidimensionales en un rango de 0 a 10
+X = np.random.rand(n, 2) * 10
 
 # Configurar subgráficos
 plt.figure(figsize=(12, 5))  # Tamaño de la figura
@@ -28,8 +29,10 @@ centroids = kmeans.cluster_centers_
 # Subgráfico 2: Resultado del clustering con K-Means
 plt.subplot(1, 2, 2)  # Segundo subgráfico
 for i in range(len(X)):
-    plt.scatter(X[i][0], X[i][1], c=('r' if labels[i] == 0 else 'b' if labels[i] == 1 else 'g'), marker='o')  # Puntos clasificados
-plt.scatter(centroids[:, 0], centroids[:, 1], c='black', marker='x', s=200, label='Centroids')  # Centroides
+    plt.scatter(X[i][0], X[i][1], c=('r' if labels[i] == 0 else 'b' if labels[i]
+                == 1 else 'g'), marker='o')  # Puntos clasificados
+plt.scatter(centroids[:, 0], centroids[:, 1], c='black',
+            marker='x', s=200, label='Centroids')  # Centroides
 plt.title('Resultado del Clustering con K-Means')  # Título
 plt.xlabel('Característica 1')  # Etiqueta eje X
 plt.ylabel('Característica 2')  # Etiqueta eje Y
