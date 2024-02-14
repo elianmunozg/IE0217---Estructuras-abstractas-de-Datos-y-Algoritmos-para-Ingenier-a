@@ -124,12 +124,12 @@ Este proyecto realiza un análisis detallado de un conjunto de datos de vehícul
 ### Regresión Lineal
 La regresión lineal asume una relación directa entre las características y el precio. Observamos que algunos factores, como el año del vehículo, muestran una correlación directa con el precio, lo que indica que a medida que el vehículo es más nuevo, su precio tiende a ser mayor.
 
-![Regresión Lineal](.\regresionlineal.png)
+![Regresión Lineal](./regresionlineal.png)
 
 ### Regresión No Lineal
 La regresión no lineal nos permite capturar relaciones más complejas. Por ejemplo, cuando observamos la relación entre el año del vehículo y su precio a través de un modelo polinomial, encontramos que la relación no es estrictamente lineal y puede verse afectada por otros factores como la marca o el modelo del vehículo.
 
-![Regresión No Lineal](.\regresionnolineal.png)
+![Regresión No Lineal](./regresionnolineal.png)
 
 
 
