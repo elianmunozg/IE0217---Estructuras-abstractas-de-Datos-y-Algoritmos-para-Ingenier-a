@@ -1,3 +1,54 @@
+Tarea 6: Análisis de Datos de Detalles de Carros
+================================================
+
+Este programa realiza un análisis de datos exhaustivo sobre un conjunto de datos de detalles de vehículos. Utiliza técnicas de regresión y clustering para extraer insights y patrones significativos.
+
+Pre-requisitos
+--------------
+
+Antes de ejecutar este programa, asegúrate de tener instalado Python y las siguientes librerías:
+
+*   pandas
+*   numpy
+*   scikit-learn
+*   matplotlib
+*   kaggle (para descargar los datos)
+
+También es necesario tener una cuenta en Kaggle y configurar el API token de Kaggle en tu máquina si se desea descargar el archivo `.csv` por su cuenta(el prgrama ya trae descargado el `.csv` a utilizar por lo que no se descagará ningún archivo a menos de que este se elimine del directorio).
+
+Instalación de Dependencias
+---------------------------
+
+Para instalar las dependencias necesarias, ejecuta el siguiente comando:
+
+
+
+`pip install pandas numpy scikit-learn matplotlib kaggle`
+
+Configuración del API Token de Kaggle
+-------------------------------------
+
+1.  Ve a tu cuenta de Kaggle y navega a la sección de 'Account' para crear un API token.
+2.  Descarga el archivo `kaggle.json`.
+3.  Coloca este archivo en la ruta `~/.kaggle/` (para usuarios Unix/Mac) o `C:\Users\<Windows-username>\.kaggle\` (para usuarios de Windows).
+
+Ejecución
+---------
+
+Para ejecutar el análisis completo el programa cuenta con un Makefile así que simplemente se debe ejecutar:
+
+
+
+`make`
+
+Este comando iniciará el proceso de análisis, que incluye la descarga del conjunto de datos (si es necesario), su limpieza, seguido por el análisis de regresión y clustering.
+
+Salida
+------
+
+Los resultados del análisis se mostrarán en la terminal y se generarán gráficos que proporcionan una representación visual de los resultados de regresión y clustering.
+
+# Parte Teórica
 ## Regresión:
 1. **¿Qué es la regresión lineal y cómo se diferencia de la regresión no lineal?**
    La regresión lineal es un método estadístico que modela la relación entre una variable dependiente y una o más variables independientes asumiendo una relación lineal. Se diferencia de la regresión no lineal en que esta última asume que la relación entre las variables no sigue una línea recta, sino que puede ser modelada con funciones polinómicas, logarítmicas, exponenciales, entre otras.
@@ -62,3 +113,47 @@
 
 5. **¿Cuál es el papel de los verbos HTTP (GET, POST, PUT, DELETE) en las solicitudes a una API y HTTP?**
    Los verbos HTTP definen la acción que se desea realizar sobre los recursos. GET se usa para solicitar datos, POST para enviar datos y crear recursos, PUT para actualizar recursos existentes, y DELETE para eliminar recursos.
+
+# Análisis de Datos de Detalles de Carros
+
+## Introducción
+Este proyecto realiza un análisis detallado de un conjunto de datos de vehículos utilizando técnicas de regresión y clustering.
+
+## Análisis de Regresión
+
+### Regresión Lineal
+La regresión lineal asume una relación directa entre las características y el precio. Observamos que algunos factores, como el año del vehículo, muestran una correlación directa con el precio, lo que indica que a medida que el vehículo es más nuevo, su precio tiende a ser mayor.
+
+![Regresión Lineal](.\regresionlineal.png)
+
+### Regresión No Lineal
+La regresión no lineal nos permite capturar relaciones más complejas. Por ejemplo, cuando observamos la relación entre el año del vehículo y su precio a través de un modelo polinomial, encontramos que la relación no es estrictamente lineal y puede verse afectada por otros factores como la marca o el modelo del vehículo.
+
+![Regresión No Lineal](.\regresionnolineal.png)
+
+
+
+### Regresión Lineal por Transmisión
+La regresión lineal sugiere que hay una diferencia en el precio de venta entre las transmisiones manuales y automáticas, con los vehículos automáticos mostrando generalmente un precio más alto.
+![Regresión Lineal por Transmisión](./transmisionlineal.png)
+
+### Regresión No Lineal por Transmisión
+La regresión no lineal muestra una tendencia similar, pero captura las variaciones en los precios con mayor precisión, lo que indica que hay otros factores en juego además del tipo de transmisión que influyen en el precio.
+![Regresión No Lineal por Transmisión](./transmisionnolineal.png)
+
+## Análisis de Clustering
+
+### Método del Codo
+El método del codo sugiere que el número óptimo de clusters para este conjunto de datos está alrededor de tres o cuatro, basándonos en el punto donde la inercia comienza a disminuir a un ritmo más lento.
+![Método del Codo](./codo.png)
+
+### Puntuación de Silhouette
+La puntuación de Silhouette alcanza un pico para tres clusters, lo que sugiere que esta es una buena elección para nuestro número de clusters, ya que proporciona una separación clara y cohesión dentro de los clusters.
+![Puntuación de Silhouette](./silhouette.png)
+
+### Visualización de Clusters
+Los clusters visualizados muestran agrupaciones claras de vehículos en el espacio de características seleccionado. Estas agrupaciones pueden corresponder a diferentes segmentos de mercado, como coches económicos, de lujo o utilitarios.
+![Clusters de Vehículos](./clusters.png)
+
+
+

@@ -1,14 +1,22 @@
 from car_analysis import regression, limpieza
 from car_analysis.clustering import determinar_numero_optimo_clusters, aplicar_kmeans
 from kaggle.api.kaggle_api_extended import KaggleApi
-
+import os
 import pandas as pd
-
 def descargar_datos(dataset='akshaydattatraykhare/car-details-dataset', path='.', unzip=True):
-    api = KaggleApi()
-    api.authenticate()
-    api.dataset_download_files(dataset, path=path, unzip=unzip)
-    print("Conjunto de datos descargado y descomprimido con éxito.")
+    # Asume que el nombre del archivo es el mismo que el final del enlace del dataset, sin la parte de la versión
+    # Por ejemplo, para "akshaydattatraykhare/car-details-dataset" el archivo sería "car-details-dataset.zip"
+    filename = 'CAR DETAILS FROM CAR DEKHO.csv'
+    filepath = os.path.join(path, filename)
+
+    # Verifica si el archivo ya existe
+    if not os.path.isfile(filepath):
+        api = KaggleApi()
+        api.authenticate()
+        api.dataset_download_files(dataset, path=path, unzip=unzip)
+        print("Conjunto de datos descargado y descomprimido con éxito.")
+    else:
+        print("El conjunto de datos ya existe en el directorio.")
 
 def cargar_datos(archivo_csv):
     return pd.read_csv(archivo_csv)
