@@ -1,4 +1,6 @@
 from car_analysis import regression, limpieza
+from car_analysis.clustering import determinar_numero_optimo_clusters, aplicar_kmeans
+
 import pandas as pd
 
 def cargar_datos(archivo_csv):
@@ -16,6 +18,17 @@ def main():
 
     # Preparar datos para el análisis de transmisión
     X, y = preparar_datos_transmision(datos_limpios)
+
+    # Seleccionar características relevantes para el clustering
+    # Asumamos que queremos analizar basándonos en 'year' y 'selling_price' como ejemplo
+    datos_para_clustering = datos_limpios[['year', 'selling_price']]
+
+    # Determinar el número óptimo de clusters
+    determinar_numero_optimo_clusters(datos_para_clustering)
+    
+    # Aplicar K-Means con el número óptimo de clusters decidido (asumiendo que decidimos 3 basado en el análisis)
+    n_clusters_optimo = 3
+    aplicar_kmeans(datos_para_clustering, n_clusters_optimo)
     
     # Verificar las columnas disponibles después de la limpieza
     print(datos_limpios.columns)
