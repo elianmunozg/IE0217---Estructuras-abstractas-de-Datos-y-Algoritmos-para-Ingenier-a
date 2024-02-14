@@ -9,13 +9,7 @@ def limpiar_datos(datos):
     # Eliminar filas con valores faltantes
     datos_limpios = datos.dropna()
 
-    # Opcional: Convertir 'year' a 'vehicle_age'
-    # Si decides calcular la edad del vehículo, descomenta las siguientes líneas:
-    # datos_limpios['vehicle_age'] = 2023 - datos_limpios['year']
-    # datos_limpios.drop(columns=['year'], inplace=True)
     
-    # Asegurarse de que no se elimine 'year' si se va a utilizar directamente
-    # Mantener la columna 'year' como está si no se realiza la transformación a 'vehicle_age'
 
     # Codificación de variables categóricas con pd.get_dummies
     categoricas = ['fuel', 'seller_type', 'transmission', 'owner']
