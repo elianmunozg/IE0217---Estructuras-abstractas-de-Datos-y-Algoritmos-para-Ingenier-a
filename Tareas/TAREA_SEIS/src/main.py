@@ -1,7 +1,14 @@
 from car_analysis import regression, limpieza
 from car_analysis.clustering import determinar_numero_optimo_clusters, aplicar_kmeans
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 import pandas as pd
+
+def descargar_datos(dataset='akshaydattatraykhare/car-details-dataset', path='.', unzip=True):
+    api = KaggleApi()
+    api.authenticate()
+    api.dataset_download_files(dataset, path=path, unzip=unzip)
+    print("Conjunto de datos descargado y descomprimido con éxito.")
 
 def cargar_datos(archivo_csv):
     return pd.read_csv(archivo_csv)
@@ -12,6 +19,8 @@ def preparar_datos_transmision(datos_limpios):
     return X, y
 
 def main():
+    # Descargar el conjunto de datos
+    descargar_datos()
     # Cargar y limpiar datos
     datos = cargar_datos('CAR DETAILS FROM CAR DEKHO.csv')
     datos_limpios = limpieza.limpiar_datos(datos)
