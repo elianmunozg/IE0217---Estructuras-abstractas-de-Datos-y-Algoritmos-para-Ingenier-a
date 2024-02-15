@@ -113,7 +113,7 @@ T Cliente<T>::generarNumeroAleatorio() const {
 //Ejemplo de uso
 // int main() {
 //     try {
-//         // Intenta ejecutar el siguiente bloque de código.
+//         // Descomentar el siguiente bloque de código para probrar su funcionalidad.
 
 //         // Crea un nuevo cliente de tipo 'int' para los números de las cuentas y préstamos.
 //         Cliente<int> cliente1("Juan Pérez", 123456789);
