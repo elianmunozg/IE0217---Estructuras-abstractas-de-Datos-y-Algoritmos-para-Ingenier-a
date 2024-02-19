@@ -8,32 +8,34 @@
 #include <cmath>
 
 /**
- * @brief Estructura que representa una transacción bancaria.
+ * @struct Transaccion
+ * @brief Representa una transacción en la cuenta bancaria.
  * 
  * @tparam T Tipo de dato para el monto de la transacción.
  */
 template<typename T>
 struct Transaccion {
-    std::string tipo;
-    T monto;
-    std::string fecha;
+    std::string tipo; ///< Tipo de transacción (e.g., Depósito, Retiro, Transferencia).
+    T monto; ///< Monto de la transacción.
+    std::string fecha; ///< Fecha de la transacción.
 };
 
 /**
- * @brief Clase que representa una cuenta bancaria.
+ * @class CuentaBancaria
+ * @brief Gestiona una cuenta bancaria, permitiendo depósitos, retiros, transferencias y depósitos a plazo.
  * 
- * @tparam T Tipo de dato para el saldo y las transacciones de la cuenta.
+ * @tparam T Tipo de dato para el manejo de montos y saldos.
  */
 template<typename T>
 class CuentaBancaria {
 private:
-    T numeroCuenta;
-    std::string tipoCuenta;
-    T saldo;
-    std::vector<Transaccion<T>> transacciones;
+    T numeroCuenta; ///< Número identificador de la cuenta.
+    std::string tipoCuenta; ///< Tipo de la cuenta (e.g., Ahorros, Corriente).
+    T saldo; ///< Saldo actual en la cuenta.
+    std::vector<Transaccion<T>> transacciones; ///< Historial de transacciones realizadas.
 
     /**
-     * @brief Guarda una transacción en un archivo.
+     * @brief Guarda los detalles de una transacción en un archivo de texto.
      * 
      * @param transaccion La transacción a guardar.
      */
@@ -41,71 +43,69 @@ private:
 
 public:
     /**
-     * @brief Constructor para crear una nueva cuenta bancaria.
+     * @brief Constructor de la clase CuentaBancaria.
      * 
-     * @param numeroCuenta Número de la cuenta bancaria.
-     * @param tipoCuenta Tipo de la cuenta bancaria.
+     * @param numeroCuenta Número de la cuenta.
+     * @param tipoCuenta Tipo de cuenta.
      * @param saldoInicial Saldo inicial de la cuenta.
      */
     CuentaBancaria(T numeroCuenta, const std::string& tipoCuenta, T saldoInicial);
 
     /**
-     * @brief Transfiere dinero de esta cuenta a otra cuenta.
+     * @brief Realiza una transferencia desde esta cuenta hacia otra cuenta.
      * 
-     * @param cuentaDestino La cuenta bancaria destino.
-     * @param monto El monto a transferir.
-     * @param fecha La fecha de la transferencia.
-     * @return true Si la transferencia fue exitosa.
-     * @return false Si la transferencia falló (p.ej., saldo insuficiente).
+     * @param cuentaDestino Referencia a la cuenta bancaria destino.
+     * @param monto Monto a transferir.
+     * @param fecha Fecha de la transferencia.
+     * @return true si la transferencia fue exitosa, false de lo contrario.
      */
     bool transferir(CuentaBancaria<T>& cuentaDestino, T monto, const std::string& fecha);
 
     /**
-     * @brief Realiza un depósito a plazo en la cuenta.
+     * @brief Deposita un monto en la cuenta, registrando la transacción.
      * 
-     * @param monto El monto del depósito.
-     * @param plazoDias El plazo del depósito en días.
-     * @param tasaInteres La tasa de interés anual.
-     * @param fechaInicio La fecha de inicio del depósito a plazo.
-     */
-    void depositoAPlazo(T monto, int plazoDias, double tasaInteres, const std::string& fechaInicio);
-
-    /**
-     * @brief Deposita dinero en la cuenta.
-     * 
-     * @param monto El monto a depositar.
-     * @param fecha La fecha del depósito.
+     * @param monto Monto a depositar.
+     * @param fecha Fecha del depósito.
      */
     void depositar(T monto, const std::string& fecha);
 
     /**
-     * @brief Retira dinero de la cuenta.
+     * @brief Retira un monto de la cuenta, si el saldo es suficiente.
      * 
-     * @param monto El monto a retirar.
-     * @param fecha La fecha del retiro.
-     * @return true Si el retiro fue exitoso.
-     * @return false Si el retiro falló (p.ej., saldo insuficiente).
+     * @param monto Monto a retirar.
+     * @param fecha Fecha del retiro.
+     * @return true si el retiro fue exitoso, false de lo contrario.
      */
     bool retirar(T monto, const std::string& fecha);
 
     /**
+     * @brief Realiza un depósito a plazo fijo, calculando los intereses y actualizando el saldo al finalizar el plazo.
+     * 
+     * @param monto Monto del depósito.
+     * @param plazoDias Duración del plazo en días.
+     * @param tasaInteres Tasa de interés anual.
+     * @param fechaInicio Fecha de inicio del plazo.
+     */
+    void depositoAPlazo(T monto, int plazoDias, double tasaInteres, const std::string& fechaInicio);
+
+    /**
      * @brief Obtiene el saldo actual de la cuenta.
      * 
-     * @return T El saldo actual.
+     * @return Saldo actual de la cuenta.
      */
     T obtenerSaldo() const;
 
     /**
-     * @brief Obtiene el historial de transacciones de la cuenta.
+     * @brief Obtiene el historial de transacciones realizadas en la cuenta.
      * 
-     * @return std::vector<Transaccion<T>> El historial de transacciones.
+     * @return Vector con el historial de transacciones.
      */
     std::vector<Transaccion<T>> obtenerTransacciones() const;
 
     /**
      * @brief Obtiene el número de la cuenta bancaria.
      * 
-     * @return T El número de la cuenta.
+     * @return Número de la cuenta.
      */
     T obtenerNumeroCuenta() const;
 };
