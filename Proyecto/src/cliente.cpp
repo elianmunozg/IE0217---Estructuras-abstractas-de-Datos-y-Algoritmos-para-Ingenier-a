@@ -97,14 +97,13 @@ T Cliente<T>::getNumeroPrestamo(const std::string& tipoPrestamo) const {
 }
 
 /**
- * @brief Obtiene el número asociado a un tipo específico de préstamo del cliente.
+ * @brief Verifica que el número de identificación tenga exactamente nueve dígitos.
  * 
- * Realiza una búsqueda entre los préstamos del cliente para encontrar uno que coincida con el tipo especificado
- * y devuelve su número de préstamo. Si el tipo de préstamo no se encuentra, se lanza una excepción.
+ * Esta función es útil para validar que un número de identificación cumpla con el formato esperado,
+ * específicamente que tenga una longitud de exactamente nueve dígitos(La cantidad de digitos de una cedula).
  * 
- * @param tipoPrestamo El tipo de préstamo del cual obtener el número (por ejemplo, "Hipotecario").
- * @return T El número del préstamo asociado con el tipo especificado.
- * @throw std::invalid_argument Si el tipo de préstamo especificado no existe en el registro del cliente.
+ * @param identificacion El número de identificación que se desea validar. Se espera que sea un entero.
+ * @return bool Retorna verdadero si el número de identificación tiene exactamente nueve dígitos; de lo contrario, retorna falso.
  */
 template<typename T>
 bool Cliente<T>::validarIdentificacion(int identificacion) const {
@@ -142,12 +141,12 @@ T Cliente<T>::generarNumeroAleatorio() const {
 //         Cliente<int> cliente1("Juan Pérez", 123456789);
 
 //         // Agrega una cuenta de ahorros y un préstamo hipotecario al primer cliente.
-//         cliente1.agregarCuenta("Ahorros");
-//         cliente1.agregarPrestamo("Hipotecario");
+//         cliente1.agregarCuenta("Colones");
+//         cliente1.agregarPrestamo("Colones");
 
 //         // Recupera y muestra la información de la cuenta y del préstamo del primer cliente.
-//         int numeroCuentaAhorros = cliente1.getNumeroCuenta("Ahorros");
-//         int numeroPrestamoHipotecario = cliente1.getNumeroPrestamo("Hipotecario");
+//         int numeroCuentaAhorros = cliente1.getNumeroCuenta("Colones");
+//         int numeroPrestamoHipotecario = cliente1.getNumeroPrestamo("Colones");
 
 //         std::cout << "Información del Cliente 1:" << std::endl;
 //         std::cout << "ID: " << cliente1.getId() << std::endl;
@@ -159,12 +158,12 @@ T Cliente<T>::generarNumeroAleatorio() const {
 //         Cliente<int> cliente2("Ana García", 987654321);
 
 //         // Agrega una cuenta corriente y un préstamo personal al segundo cliente.
-//         cliente2.agregarCuenta("Corriente");
-//         cliente2.agregarPrestamo("Personal");
+//         cliente2.agregarCuenta("Dolares");
+//         cliente2.agregarPrestamo("Dolares");
 
 //         // Recupera y muestra la información de la cuenta y del préstamo del segundo cliente.
-//         int numeroCuentaCorriente = cliente2.getNumeroCuenta("Corriente");
-//         int numeroPrestamoPersonal = cliente2.getNumeroPrestamo("Personal");
+//         int numeroCuentaCorriente = cliente2.getNumeroCuenta("Dolares");
+//         int numeroPrestamoPersonal = cliente2.getNumeroPrestamo("Dolares");
 
 //         std::cout << "\nInformación del Cliente 2:" << std::endl;
 //         std::cout << "ID: " << cliente2.getId() << std::endl;

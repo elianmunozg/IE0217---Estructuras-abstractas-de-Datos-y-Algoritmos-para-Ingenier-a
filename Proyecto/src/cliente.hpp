@@ -34,7 +34,7 @@ public:
     /**
      * @brief Agrega un nuevo préstamo al cliente.
      * 
-     * @param tipoPrestamo El tipo de préstamo a agregar (por ejemplo, "Hipotecario").
+     * @param tipoPrestamo El tipo de préstamo a agregar (por ejemplo, "Dólares").
      */
     void agregarPrestamo(const std::string& tipoPrestamo);
 

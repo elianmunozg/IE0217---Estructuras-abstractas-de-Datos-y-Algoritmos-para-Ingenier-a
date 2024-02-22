@@ -200,6 +200,7 @@ void CuentaBancaria<T>::guardarTransaccionEnArchivo(const Transaccion<T>& transa
         std::cerr << "No se pudo abrir el archivo " << nombreArchivo << " para escribir." << std::endl;
     }
 }
+
 // Verificación de funcionamiento de guardado de datos de las transacciones en el txt(depositar y retirar)
 // Y del funcionamiento del método obtener transacciones
 // int main() {
@@ -231,7 +232,9 @@ void CuentaBancaria<T>::guardarTransaccionEnArchivo(const Transaccion<T>& transa
 
 //     return 0;
 // }
-// //Verificación de funcionamiento del método transferencia
+
+
+//Verificación de funcionamiento del método transferencia
 // int main() {
 //     // Creación de dos cuentas bancarias con número de cuenta, tipo de cuenta y saldo inicial
 //     CuentaBancaria<double> cuentaOrigen(123456, "Ahorro", 1000.0);
@@ -252,13 +255,22 @@ void CuentaBancaria<T>::guardarTransaccionEnArchivo(const Transaccion<T>& transa
 //     // Muestra el saldo final de ambas cuentas después de la transferencia
 //     std::cout << "Saldo final cuenta origen: " << cuentaOrigen.obtenerSaldo() << std::endl;
 //     std::cout << "Saldo final cuenta destino: " << cuentaDestino.obtenerSaldo() << std::endl;
+//     // Obtener y mostrar las transacciones
+//     auto transacciones = cuentaDestino.obtenerTransacciones();
+//     std::cout << "Transacciones realizadas:" << std::endl;
+//     for (const auto& transaccion : transacciones) {
+//         std::cout << "Tipo: " << transaccion.tipo << ", Monto: $" << transaccion.monto << ", Fecha: " << transaccion.fecha << std::endl;
+//     }
+
 
 //     return 0;
 // }
+
+
 // //Prueba del metodo deposito a plazo
 // int main() {
 //     // Creación de una cuenta bancaria con número de cuenta, tipo de cuenta y saldo inicial
-//     CuentaBancaria<double> cuenta(123456, "Ahorro", 1000.0);
+//     CuentaBancaria<double> cuenta(123456, "Colones", 1000.0);
 
 //     // Muestra el saldo inicial de la cuenta
 //     std::cout << "Saldo inicial: " << cuenta.obtenerSaldo() << std::endl;
@@ -271,6 +283,6 @@ void CuentaBancaria<T>::guardarTransaccionEnArchivo(const Transaccion<T>& transa
 
 //     // Muestra el saldo final de la cuenta después del depósito a plazo
 //     std::cout << "Saldo final después del depósito a plazo: " << cuenta.obtenerSaldo() << std::endl;
-
+    
 //     return 0;
 // }

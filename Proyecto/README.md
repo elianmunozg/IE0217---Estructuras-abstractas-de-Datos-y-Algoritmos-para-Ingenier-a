@@ -1,9 +1,6 @@
 # ie0217-proyecto
 Este repositorio es para la entrega del proyecto del curso: Estructuras Abstractas de Datos y Algoritmos para Ingeniería - 002
 
-**Es importante destacar que el compañero Isaí Gonzales Solano: C03457, solo realizó un aporte.**
-
-**Ademas de esto abandonó el proyecto, por lo tanto ya no pertenece al grupo.**
 
 **Autor:**
 
