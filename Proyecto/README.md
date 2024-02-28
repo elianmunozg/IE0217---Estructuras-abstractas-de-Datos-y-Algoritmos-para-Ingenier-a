@@ -1,7 +1,16 @@
 # ie0217-proyecto
 Este repositorio es para la entrega del proyecto del curso: Estructuras Abstractas de Datos y Algoritmos para Ingeniería - 002
+## Ejecución del programa 
+Para ejecutar el programa utilizar el comando `make` y `make run`, una vez ejecutado se le mostrará al usuario un menú como se muestra a continuación.
+```
+Bienvenido al Sistema de Gestion Bancaria.
+Por favor, seleccione el modo de operacion
+1. Atencion a Clientes
+2. Informacion General sobre Prestamos
+3. Salir
+```
 
-
+ La implementación de atención al cliente está incompleta por lo que solo se puede solictar las transacciones y el estado cuenta del usuario(se recomienda usar al ususario con id 123456789, si se desea probar esta implementación), por otro lado se implementa completamente la Información General sobre prestamos, permitiendo al usuario ver la tabla de mortización del tipo de prestamo según el monto que desee(Personal, Hipotecario, Prendario o Personalizado ) :
 **Autor:**
 
 *-Elian Muñoz Gomez - B95412*

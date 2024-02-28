@@ -7,7 +7,7 @@
  */
 #include "cuentabancaria.hpp"
 #include "cliente.cpp"
-Gestiona una cuenta bancaria, permitiendo depósitos, retiros, transferencias y depósitos a plazo.
+
 
 /**
  * @brief Constructor que inicializa una cuenta bancaria con un número, tipo y saldo inicial.

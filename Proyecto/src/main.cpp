@@ -336,14 +336,46 @@ int main() {
                         continue; // Comienza la próxima iteración del bucle while
                 }
                 switch(opcion) {
-                    case 1: // Préstamo Personalizado
-                        std::cout << "Ingrese los detalles para un préstamo personalizado:\n";
-                        std::cout << "Monto del préstamo: ";
-                        std::cin >> monto;
-                        std::cout << "Cantidad de cuotas: ";
-                        std::cin >> cuotas;
-                        std::cout << "Tasa de interés (anual en %): ";
-                        std::cin >> tasa;
+                    case 1: 
+                        // Préstamo Personalizado
+                         // Solicitar y validar el monto del préstamo
+                        do {
+                            std::cout << "Monto del préstamo: ";
+                            std::cin >> monto;
+                            if (std::cin.fail() || monto <= 0) {
+                                std::cout << "Valor no válido, por favor ingrese un número entero positivo.\n";
+                                std::cin.clear(); // Limpia los flags de error de std::cin
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora el resto de la línea
+                            } else {
+                                break; // Salir del bucle si el valor es válido
+                            }
+                        } while (true);
+
+                        // Solicitar y validar la cantidad de cuotas
+                        do {
+                            std::cout << "Cantidad de cuotas: ";
+                            std::cin >> cuotas;
+                            if (std::cin.fail() || cuotas <= 0) {
+                                std::cout << "Valor no válido, por favor ingrese un número entero positivo.\n";
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            } else {
+                                break;
+                            }
+                        } while (true);
+
+                        // Solicitar y validar la tasa de interés
+                        do {
+                            std::cout << "Tasa de interés (anual en %): ";
+                            std::cin >> tasa;
+                            if (std::cin.fail() || tasa < 0) {
+                                std::cout << "Valor no válido, por favor ingrese un número positivo.\n";
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            } else {
+                                break;
+                            }
+                        } while (true);
                         tipo = "personalizado";
 
                         {
@@ -354,8 +386,18 @@ int main() {
 
                     case 2: // Préstamo Prendario
                         {
-                            std::cout << "Monto del préstamo: ";
-                            std::cin >> monto;
+                            // Solicitar y validar el monto del préstamo
+                            do {
+                                std::cout << "Monto del préstamo: ";
+                                std::cin >> monto;
+                                if (std::cin.fail() || monto <= 0) {
+                                    std::cout << "Valor no válido, por favor ingrese un número entero positivo.\n";
+                                    std::cin.clear(); // Limpia los flags de error de std::cin
+                                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora el resto de la línea
+                                } else {
+                                    break; // Salir del bucle si el valor es válido
+                                }
+                            } while (true);
                             Prestamo prestamoPrendario(monto, 36, 0, "prendario",  id_simulacion_prestamo);
                             prestamoPrendario.configurarTasaPrendario();
                             prestamoPrendario.generarTablaAmortizacionTxt("TablaPrendario.txt");
@@ -374,8 +416,17 @@ int main() {
 
                     case 4: // Préstamo Personal
                         {   
-                            std::cout << "Monto del préstamo: ";
-                            std::cin >> monto;
+                            do {
+                                std::cout << "Monto del préstamo: ";
+                                std::cin >> monto;
+                                if (std::cin.fail() || monto <= 0) {
+                                    std::cout << "Valor no válido, por favor ingrese un número entero positivo.\n";
+                                    std::cin.clear(); // Limpia los flags de error de std::cin
+                                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora el resto de la línea
+                                } else {
+                                    break; // Salir del bucle si el valor es válido
+                                }
+                            } while (true);
                             Prestamo prestamoPersonal(monto, 60, 0, "personal", id_simulacion_prestamo);
                             prestamoPersonal.configurarTasaPersonal();
                             prestamoPersonal.generarTablaAmortizacionTxt("TablaPersonal.txt");
