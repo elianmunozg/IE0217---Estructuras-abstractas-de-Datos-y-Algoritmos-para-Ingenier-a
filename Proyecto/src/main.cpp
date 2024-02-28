@@ -9,10 +9,10 @@
 #include <sstream>
 #include <limits>
 
-// Definición del mapa de clientes registrados.
+/* Definición del mapa de clientes registrados. */
 std::map<int, Cliente<int>> clientesRegistrados;
 
-// Función para crear clientes
+/* Función para crear clientes, se utiliza la clase cliente para realizarlo */
 void poblarClientesRegistrados() {
     // Cliente de ejemplo 1
     Cliente<int> cliente1("Juan Pérez", 123456789);
@@ -26,10 +26,10 @@ void poblarClientesRegistrados() {
     cliente2.agregarPrestamo("Personal");
     clientesRegistrados.emplace(cliente2.getId(), cliente2);
 
-    // Agregar más clientes si es necesario.
+    
 }
 
-// Función para obtener la fecha actual en formato YYYY-MM-DD
+/* Función para obtener la fecha actual en formato YYYY-MM-DD */
 std::string obtenerFechaActual() {
     auto ahora = std::chrono::system_clock::now();
     auto tiempoComoTiempoT = std::chrono::system_clock::to_time_t(ahora);
@@ -37,7 +37,7 @@ std::string obtenerFechaActual() {
     fechaStream << std::put_time(std::localtime(&tiempoComoTiempoT), "%Y-%m-%d");
     return fechaStream.str();
 }
-
+/* Función main, se encarga de controlar la interfaz del usuario*/
 int main() {
 
     poblarClientesRegistrados();
@@ -326,7 +326,7 @@ int main() {
                 std::cout << "4. Préstamo Personal\n";
                 std::cout << "5. Salir\n";
 
-                std::cout << "Ingrese su opción: ";
+                std::cout << "Ingrese una opción: ";
                 std::cin >> opcion;
 
                 if (std::cin.fail() || (opcion < 1 || opcion > 5)) {

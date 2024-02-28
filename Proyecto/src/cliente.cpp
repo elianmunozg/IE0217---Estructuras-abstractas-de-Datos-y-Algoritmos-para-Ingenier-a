@@ -2,7 +2,7 @@
  * @file cliente.hpp
  * @brief Archivo de implementación para la clase Cliente.
  * 
- * Define la implementación de los métodos declarados en Cliente.h. Esta clase gestiona
+ * Define la implementación de los métodos declarados en Cliente.hpp. Esta clase gestiona
  * la información y operaciones relacionadas con los clientes, incluyendo la gestión de
  * cuentas y préstamos mediante números identificativos.
  */

@@ -1,7 +1,26 @@
-// Prestamo.cpp
+/**
+ * @file prestamo.hpp
+ * @brief Archivo de implementación para la clase Prestamo.
+ * 
+ * La clase Prestamo permite modelar diferentes tipos de préstamos
+ * y realizar operaciones relacionadas con los mismos, como el cálculo
+ * de la cuota mensual, abonar cuotas, generar reportes y generar
+ * tablas de amortización.
+ */
 #include "prestamo.hpp"
 
-
+/**
+ * @brief Constructor de la clase Prestamo.
+ * 
+ * Este constructor inicializa un objeto de la clase Prestamo con los parámetros proporcionados.
+ * Calcula la tabla de amortización del préstamo utilizando la fórmula de amortización francesa.
+ * 
+ * @param monto Monto total del préstamo.
+ * @param cuotas Número de cuotas del préstamo.
+ * @param tasa Tasa de interés anual del préstamo.
+ * @param tipo Tipo de préstamo (personalizado, prendario, hipotecario, personal).
+ * @param id Identificador único del préstamo.
+ */
 Prestamo::Prestamo(double monto, int cuotas, double tasa, std::string tipo, std::string id)
     : montoPrestamo(monto), cantidadCuotas(cuotas), tasaInteres(tasa), tipoPrestamo(tipo), idPrestamo(id){
     // Calcula el pago mensual usando la fórmula de amortización francesa
@@ -19,57 +38,123 @@ Prestamo::Prestamo(double monto, int cuotas, double tasa, std::string tipo, std:
     }
 }
 
+/**
+ * @brief Establece el monto del préstamo.
+ * 
+ * @param monto Monto total del préstamo.
+ */
 void Prestamo::establecerMontoPrestamo(double monto) {
     montoPrestamo = monto;
 }
 
+/**
+ * @brief Establece la cantidad de cuotas del préstamo.
+ * 
+ * @param cuotas Número de cuotas del préstamo.
+ */
 void Prestamo::establecerCantidadCuotas(int cuotas) {
     cantidadCuotas = cuotas;
 }
 
+/**
+ * @brief Establece la tasa de interés del préstamo.
+ * 
+ * @param tasa Tasa de interés anual del préstamo.
+ */
 void Prestamo::establecerTasaInteres(double tasa) {
     tasaInteres = tasa;
 }
 
+/**
+ * @brief Establece el tipo de préstamo.
+ * 
+ * @param tipo Tipo de préstamo (personalizado, prendario, hipotecario, personal).
+ */
 void Prestamo::establecerTipoPrestamo(std::string tipo) {
     tipoPrestamo = tipo;
 }
 
+/**
+ * @brief Obtiene el monto del préstamo.
+ * 
+ * @return Monto total del préstamo.
+ */
 double Prestamo::obtenerMontoPrestamo() const {
     return montoPrestamo;
 }
 
+/**
+ * @brief Obtiene la cantidad de cuotas del préstamo.
+ * 
+ * @return Número de cuotas del préstamo.
+ */
 int Prestamo::obtenerCantidadCuotas() const {
     return cantidadCuotas;
 }
 
+/**
+ * @brief Obtiene la tasa de interés del préstamo.
+ * 
+ * @return Tasa de interés anual del préstamo.
+ */
 double Prestamo::obtenerTasaInteres() const {
     return tasaInteres;
 }
 
-
+/**
+ * @brief Obtiene el tipo de préstamo.
+ * 
+ * @return Tipo de préstamo (personalizado, prendario, hipotecario, personal).
+ */
 std::string Prestamo::obtenerTipoPrestamo() const {
     return tipoPrestamo;
 }
 
+/**
+ * @brief Configura la tasa de interés para un préstamo personal.
+ * 
+ * Esta función establece la tasa de interés preestablecida para un préstamo personal.
+ */
 void Prestamo::configurarTasaPersonal() {
-    tasaInteres = 8.5; // Ejemplo de tasa preestablecida para préstamo personal
+    tasaInteres = 8.5;
 }
 
+/**
+ * @brief Configura la tasa de interés para un préstamo prendario.
+ * 
+ * Esta función establece la tasa de interés preestablecida para un préstamo prendario.
+ */
 void Prestamo::configurarTasaPrendario() {
-    tasaInteres = 10.5; // Ejemplo de tasa preestablecida para préstamo prendario
+    tasaInteres = 10.5;
 }
 
+/**
+ * @brief Configura la tasa de interés para un préstamo hipotecario.
+ * 
+ * Esta función establece la tasa de interés preestablecida para un préstamo hipotecario.
+ */
 void Prestamo::configurarTasaHipotecario() {
-    tasaInteres = 6.5; // Ejemplo de tasa preestablecida para préstamo hipotecario
+    tasaInteres = 6.5;
 }
 
+/**
+ * @brief Calcula la cuota mensual del préstamo.
+ * 
+ * @return Cuota mensual del préstamo.
+ */
 double Prestamo::calcularCuotaMensual() const {
     double tasaMensual = tasaInteres / 12 / 100;
     double cuota = (montoPrestamo * tasaMensual) / (1 - pow(1 + tasaMensual, -cantidadCuotas));
     return cuota;
 }
 
+/**
+ * @brief Abona una cuota al préstamo.
+ * 
+ * Esta función abona una cuota al préstamo, reduciendo el saldo restante.
+ * 
+ * @param montoAbonado Monto abonado para pagar una cuota del préstamo.
+ */
 void Prestamo::abonarCuota(double montoAbonado) {
     // Asumimos que el pago se realiza en orden y por el monto completo de la cuota.
     if (pagos.size() >= cantidadCuotas) {
@@ -90,10 +175,17 @@ void Prestamo::abonarCuota(double montoAbonado) {
     // Registrar el pago
     pagos.push_back({capital, interes});
 
-    // Actualizar la tabla para las siguientes cuotas si es necesario
-    // Este paso se omite para simplificar, pero implicaría recalcular las cuotas futuras basadas en el nuevo saldo
+   
 }
 
+/**
+ * @brief Genera un reporte de los pagos realizados en el préstamo.
+ * 
+ * Esta función genera un reporte detallado de los pagos realizados en el préstamo,
+ * incluyendo el capital abonado, los intereses pagados y el saldo restante.
+ * 
+ * @param nombreArchivo Nombre del archivo donde se guardará el reporte.
+ */
 void Prestamo::generarReporte(const std::string& nombreArchivo) const {
     std::ofstream archivoReporte(nombreArchivo);
     if (!archivoReporte.is_open()) {
@@ -132,6 +224,14 @@ void Prestamo::generarReporte(const std::string& nombreArchivo) const {
     archivoReporte.close();
 }
 
+/**
+ * @brief Genera una tabla de amortización del préstamo en un archivo .txt.
+ * 
+ * Esta función genera una tabla de amortización detallada del préstamo y la guarda en un archivo de texto.
+ * La tabla incluye información sobre cada cuota mensual, los intereses, el capital y el saldo restante.
+ * 
+ * @param nombreArchivo Nombre del archivo donde se guardará la tabla de amortización.
+ */
 void Prestamo::generarTablaAmortizacionTxt(const std::string& nombreArchivo) const {
     std::ofstream archivoSalida(nombreArchivo);
     if (!archivoSalida.is_open()) {
