@@ -35,10 +35,10 @@ Cliente<T>::Cliente(const std::string& nombre, int identificacion)
  * @brief Agrega una nueva cuenta bancaria al cliente con un número de cuenta generado aleatoriamente.
  * 
  * Este método asigna un nuevo número de cuenta, generado aleatoriamente, a un tipo específico de cuenta
- * bancaria (como "Ahorros" o "Corriente"). Esto permite al cliente tener múltiples cuentas de diferentes
+ * bancaria (como "Dolares" o "Colones"). Esto permite al cliente tener múltiples cuentas de diferentes
  * tipos, cada una identificada por un número único.
  * 
- * @param tipoCuenta El tipo de la nueva cuenta a agregar, especificando su categoría (por ejemplo, "Ahorros").
+ * @param tipoCuenta El tipo de la nueva cuenta a agregar, especificando su categoría (por ejemplo, "Colones").
  */
 template<typename T>
 void Cliente<T>::agregarCuenta(const std::string& tipoCuenta) {
@@ -52,7 +52,7 @@ void Cliente<T>::agregarCuenta(const std::string& tipoCuenta) {
  * (como "Hipotecario" o "Personal"). Permite al cliente acceder a diferentes tipos de préstamos, cada uno
  * identificado por un número único.
  * 
- * @param tipoPrestamo El tipo del nuevo préstamo a agregar, especificando su categoría (por ejemplo, "Hipotecario").
+ * @param tipoPrestamo El tipo del nuevo préstamo a agregar, especificando su categoría (por ejemplo, "Dolares").
  */
 template<typename T>
 void Cliente<T>::agregarPrestamo(const std::string& tipoPrestamo) {
@@ -83,7 +83,7 @@ T Cliente<T>::getNumeroCuenta(const std::string& tipoCuenta) const {
  * y devuelve su número de cuenta. Si el tipo de cuenta no se encuentra entre las cuentas del cliente, se
  * lanza una excepción.
  * 
- * @param tipoCuenta El tipo de cuenta del cual obtener el número (por ejemplo, "Ahorros").
+ * @param tipoCuenta El tipo de cuenta del cual obtener el número (por ejemplo, "Colones").
  * @return T El número de la cuenta asociada con el tipo especificado.
  * @throw std::invalid_argument Si el tipo de cuenta especificado no existe en el registro del cliente.
  */

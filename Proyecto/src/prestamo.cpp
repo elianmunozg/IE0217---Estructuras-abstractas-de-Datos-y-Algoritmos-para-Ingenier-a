@@ -161,7 +161,8 @@ void Prestamo::generarTablaAmortizacionTxt(const std::string& nombreArchivo) con
     archivoSalida << "Total de intereses pagados: " << std::fixed << std::setprecision(2) << totalInteres << "\n";
     archivoSalida.close();
 }
-// Prueba de funcionalidad del método generarTablaAmortizacionTxt
+// Prueba de funcionalidad del método generarTablaAmortizacionTxt esta prueba se hizo antes de implementar el atributo id
+// Por lo que si se quiere probar se debera agregar a los objetos Prestamo existentes
 // int main() {
 //     // Crear un préstamo personalizado
 //     double monto;

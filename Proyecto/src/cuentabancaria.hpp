@@ -89,6 +89,15 @@ public:
     void depositoAPlazo(T monto, int plazoDias, double tasaInteres, const std::string& fechaInicio);
 
     /**
+     * @brief Abona una cuota de préstamo a la cuenta, restando del saldo y registrando la transacción.
+     * 
+     * @param monto Monto a abonar.
+     * @param numeroPrestamo Número del préstamo al que se abona.
+     * @param fecha Fecha del abono.
+     */
+    void abonarCuotaPrestamo(T monto, T numeroPrestamo, const std::string& fecha);
+
+    /**
      * @brief Obtiene el saldo actual de la cuenta.
      * 
      * @return Saldo actual de la cuenta.

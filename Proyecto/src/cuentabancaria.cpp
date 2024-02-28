@@ -141,6 +141,36 @@ void CuentaBancaria<T>::depositoAPlazo(T monto, int plazoDias, double tasaIntere
 }
 
 /**
+ * @brief Abona una cuota de préstamo a la cuenta, restando del saldo y registrando la transacción.
+ * 
+ * Este método intenta realizar un abono a la cuota de un préstamo específico, disminuyendo el saldo de la cuenta
+ * por el monto especificado. Si el saldo es suficiente para cubrir el abono, se registra la transacción
+ * como un "Abono Préstamo", incluyendo el número del préstamo en la descripción. La transacción se guarda
+ * tanto en el historial interno de transacciones de la cuenta como en un archivo de texto para su registro.
+ * En caso de no contar con fondos suficientes, se muestra un mensaje de error y no se realiza el abono.
+ * 
+ * @param monto Monto de la cuota del préstamo a abonar.
+ * @param numeroPrestamo Número identificador del préstamo al cual se está abonando.
+ * @param fecha Fecha en la que se realiza el abono.
+ * 
+ * @return void No retorna ningún valor. Sin embargo, modifica el saldo de la cuenta y actualiza el historial de transacciones.
+ */
+template<typename T>
+void CuentaBancaria<T>::abonarCuotaPrestamo(T monto, T numeroPrestamo, const std::string& fecha) {
+    // Utiliza el método retirar para disminuir el saldo de la cuenta
+    if (this->retirar(monto, fecha)) {
+        // Registra la transacción específica de abono a cuota de préstamo
+        // Nota: La transacción de retiro ya fue registrada por el método retirar, así que aquí solo registramos el propósito específico del retiro
+        Transaccion<T> transaccionAbono = {"Abono Préstamo " + std::to_string(numeroPrestamo), monto, fecha};
+        this->guardarTransaccionEnArchivo(transaccionAbono);
+    } else {
+        // Opcional: Manejar el caso de no poder realizar el abono por falta de fondos
+        std::cerr << "No se pudo realizar el abono a la cuota del préstamo por falta de fondos." << std::endl;
+    }
+}
+
+
+/**
  * @brief Obtiene el saldo actual de la cuenta.
  * 
  * @tparam T Tipo de dato numérico para el saldo.
@@ -284,5 +314,37 @@ void CuentaBancaria<T>::guardarTransaccionEnArchivo(const Transaccion<T>& transa
 //     // Muestra el saldo final de la cuenta después del depósito a plazo
 //     std::cout << "Saldo final después del depósito a plazo: " << cuenta.obtenerSaldo() << std::endl;
     
+//     return 0;
+// }
+
+// //Comprobación de funcionamiento del metodo abonar prestamo
+// int main() {
+//     // Creación de la cuenta bancaria desde la que se abonará la cuota del préstamo
+//     CuentaBancaria<double> cuentaOrigen(123456789, "Ahorros", 10000.0);
+
+//     // Creación de otra cuenta bancaria para demostración (opcional para este ejemplo)
+//     CuentaBancaria<double> cuentaDestino(987654321, "Corriente", 5000.0);
+
+//     // Monto de la cuota del préstamo a abonar
+//     double montoCuotaPrestamo = 1500.0;
+//     // Número de préstamo
+//     double numeroPrestamo = 11223344;
+//     // Fecha del abono
+//     std::string fecha = "2023-02-15";
+
+//     // Realizando el abono a la cuota del préstamo
+//     std::cout << "Abonando cuota de préstamo...\n";
+//     cuentaOrigen.abonarCuotaPrestamo(montoCuotaPrestamo, numeroPrestamo, fecha);
+
+//     // Verificando el saldo después del abono
+//     std::cout << "Saldo después del abono: $" << cuentaOrigen.obtenerSaldo() << std::endl;
+
+//     // Imprimiendo el historial de transacciones
+//     std::cout << "Historial de transacciones:\n";
+//     auto transacciones = cuentaOrigen.obtenerTransacciones();
+//     for (const auto& transaccion : transacciones) {
+//         std::cout << transaccion.tipo << " - Monto: $" << transaccion.monto << " - Fecha: " << transaccion.fecha << std::endl;
+//     }
+
 //     return 0;
 // }
